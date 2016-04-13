@@ -291,7 +291,7 @@ initial_pos是初始位置,initial_v是初始速度,file是我们要输出的数
     run(`eog path.png`)
 
 #
-![](img/path.png)
+![](../img/path.png)
 
 #你的需求没有解决？
 何必对一门只有0.4版本的语言这么急呢？
@@ -334,4 +334,4 @@ numpy+python的组合固然很好，但专为科学计算设计的Julia会更好
 
 #有请和开发组一起che过的徐浩童鞋
 
-#![](img/photo.jpg)
+#![](../img/photo.jpg)
