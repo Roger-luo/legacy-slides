@@ -2,6 +2,7 @@
 
 ## Projects' Slides
 
+- [Optic based TRNG](PhyxEx.html)
 - [Kebab]()
 
 ## Julia
