@@ -1,5 +1,9 @@
 # Roger Luo's Slides
 
-## Julia User Meetup Slides
 
-- [2016 meetup@Shenzhen](contents/lqcc.html)
+## Julia
+- [Talks on lqcc's group meeting](contents/lqcc.html)
+
+### Julia User Meetup Slides
+- [SFD2015 slides]
+- [2016 meetup@Shenzhen]
