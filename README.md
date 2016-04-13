@@ -2,4 +2,4 @@
 
 ## Julia User Meetup Slides
 
-- [2016 meetup@Shenzhen]
+- [2016 meetup@Shenzhen](contents/lqcc.html)
