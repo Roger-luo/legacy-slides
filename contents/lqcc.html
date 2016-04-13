@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>Julia简介</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Julia简介</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="intro" class="slide level1">
+<h1>Intro</h1>
+<p>Julia 是一款具有高性能的动态语言,速度快,很好的结合现在流型的一些新的计算机技术,如云计算,分布式计算等等.在机器学习方面已经开始崭露头角.</p>
+</section>
+<section id="特性" class="slide level1">
+<h1>特性</h1>
+<ul>
+<li>支持多重派发</li>
+<li>动态类型系统</li>
+<li>近乎于静态编译语言的速度</li>
+<li>内建的包管理器</li>
+<li>类似于Lisp的宏命令和其它metaprogramming功能</li>
+<li>可以调用Python</li>
+<li>无其额外开销地调用C</li>
+</ul>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<ul>
+<li>强大的类shell的命令管理</li>
+<li>为分布式和并行计算设计</li>
+<li>支持协程</li>
+<li>用户定义的类型和内建类型一样快</li>
+<li>简洁可扩展的类型转换和类型提升</li>
+<li>对unicode的有效支持</li>
+<li>MIT license</li>
+</ul>
+</section>
+<section id="benchmarks" class="slide level1">
+<h1>Benchmarks</h1>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Fortran</th>
+<th style="text-align: left;">Julia</th>
+<th style="text-align: left;">Python</th>
+<th style="text-align: left;">R</th>
+<th style="text-align: left;">Matlab</th>
+<th style="text-align: left;">Octave</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fib</td>
+<td style="text-align: left;">0.70</td>
+<td style="text-align: left;">2.11</td>
+<td style="text-align: left;">77.76</td>
+<td style="text-align: left;">533.52</td>
+<td style="text-align: left;">26.89</td>
+<td style="text-align: left;">9324.35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">parse_int</td>
+<td style="text-align: left;">5.05</td>
+<td style="text-align: left;">1.45</td>
+<td style="text-align: left;">17.02</td>
+<td style="text-align: left;">45.73</td>
+<td style="text-align: left;">802.52</td>
+<td style="text-align: left;">9581.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">quicksort</td>
+<td style="text-align: left;">1.31</td>
+<td style="text-align: left;">1.15</td>
+<td style="text-align: left;">32.89</td>
+<td style="text-align: left;">264.54</td>
+<td style="text-align: left;">4.92</td>
+<td style="text-align: left;">1866.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mandel</td>
+<td style="text-align: left;">0.81</td>
+<td style="text-align: left;">0.79</td>
+<td style="text-align: left;">15.32</td>
+<td style="text-align: left;">53.16</td>
+<td style="text-align: left;">7.58</td>
+<td style="text-align: left;">451.81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pi_sum</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">21.99</td>
+<td style="text-align: left;">9.56</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">299.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rand_mat_stat</td>
+<td style="text-align: left;">1.45</td>
+<td style="text-align: left;">1.66</td>
+<td style="text-align: left;">17.93</td>
+<td style="text-align: left;">14.56</td>
+<td style="text-align: left;">14.52</td>
+<td style="text-align: left;">30.93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rand_mat_mul</td>
+<td style="text-align: left;">3.48</td>
+<td style="text-align: left;">1.02</td>
+<td style="text-align: left;">1.14</td>
+<td style="text-align: left;">1.57</td>
+<td style="text-align: left;">1.12</td>
+<td style="text-align: left;">1.12</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Mathematica</th>
+<th style="text-align: left;">JavaScript</th>
+<th style="text-align: left;">Go</th>
+<th style="text-align: left;">LuaJIT</th>
+<th style="text-align: left;">Java</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fib</td>
+<td style="text-align: left;">118.53</td>
+<td style="text-align: left;">3.36</td>
+<td style="text-align: left;">1.86</td>
+<td style="text-align: left;">1.71</td>
+<td style="text-align: left;">1.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">parse_int</td>
+<td style="text-align: left;">15.02</td>
+<td style="text-align: left;">6.06</td>
+<td style="text-align: left;">1.20</td>
+<td style="text-align: left;">5.77</td>
+<td style="text-align: left;">3.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">quicksort</td>
+<td style="text-align: left;">43.23</td>
+<td style="text-align: left;">2.70</td>
+<td style="text-align: left;">1.29</td>
+<td style="text-align: left;">2.03</td>
+<td style="text-align: left;">2.60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mandel</td>
+<td style="text-align: left;">5.13</td>
+<td style="text-align: left;">0.66</td>
+<td style="text-align: left;">1.11</td>
+<td style="text-align: left;">0.67</td>
+<td style="text-align: left;">1.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pi_sum</td>
+<td style="text-align: left;">1.69</td>
+<td style="text-align: left;">1.01</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rand_mat_stat</td>
+<td style="text-align: left;">5.95</td>
+<td style="text-align: left;">2.30</td>
+<td style="text-align: left;">2.96</td>
+<td style="text-align: left;">3.27</td>
+<td style="text-align: left;">3.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rand_mat_mul</td>
+<td style="text-align: left;">1.30</td>
+<td style="text-align: left;">15.07</td>
+<td style="text-align: left;">1.42</td>
+<td style="text-align: left;">1.16</td>
+<td style="text-align: left;">2.36</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hello-world" class="slide level1">
+<h1>Hello World!</h1>
+<p>从最基本的开始</p>
+<p>Julia可以直接在命令行中运行</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">julia</span> -e <span class="st">&#39;print(&quot;hello world!\n&quot;)&#39;</span></code></pre>
+<p>或者打开Julia的shell,输入</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">julia&gt;</span> print(<span class="st">&quot;hello world!\n&quot;</span>)</code></pre>
+<p>或者可以在一个脚本文件<code>hello.jl</code>中写入</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">print(<span class="st">&quot;hello world!</span>\n<span class="st">&quot;</span>)</code></pre>
+</section>
+<section id="变量-variables" class="slide level1">
+<h1>变量 Variables</h1>
+<p>Julia的变量不需要特别声明,变量类型会由值自动确定</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># 将10赋值给变量x</span>
+julia&gt; x=<span class="fl">10</span>
+<span class="fl">10</span>
+<span class="co"># 对变量x进行运算</span>
+julia&gt; x+<span class="fl">1</span>
+<span class="fl">11</span>
+<span class="co"># 重新给x赋值</span>
+julia&gt; x=<span class="fl">1</span>+<span class="fl">1</span>
+<span class="co"># 也可以给x赋其它类型的值</span>
+julia&gt; x=<span class="st">&quot;hello world!&quot;</span>
+hello world!</code></pre>
+</section>
+<section id="julia的变量名称支持unicode比如" class="slide level1">
+<h1>Julia的变量名称支持unicode比如</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; δ = <span class="fl">0.00001</span>
+<span class="fl">1.0e-5</span>
+julia&gt; 你好 = <span class="st">&quot;hello&quot;</span>
+hello</code></pre>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<p>支持以LaTex语法输入特殊字符,在Julia的命令行,Jupyter,有juliacompletions插件的sublime编辑器中都可以用类似于的LaTex命令+Tab输入特殊字符,比如<code>δ</code> 可以通过输入<code>\delta</code>-Tab来得到</p>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<p>Julia有一些自带的常量,这些常量是允许重载的.比如</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; pi
+π = <span class="fl">3.1415926535897</span>...
+julia&gt; pi = <span class="fl">3</span>
+WARNING: imported binding <span class="kw">for</span> pi overwritten <span class="kw">in</span> <span class="kw">module</span> Main
+<span class="fl">3</span>
+julia&gt; π
+<span class="fl">3</span></code></pre>
+</section>
+<section id="整数和浮点数" class="slide level1">
+<h1>整数和浮点数</h1>
+<ul>
+<li>整数从8位整数支持到128位整数(Signed/Unsigned)</li>
+<li>浮点数从16位浮点数支持到64位浮点数,如果有高精度的计算需求还可以使用内建的高精度浮点数<code>BigFloat</code>(256位)</li>
+</ul>
+</section>
+<section id="整数" class="slide level1">
+<h1>整数</h1>
+<p>整数默认跟随系统位数,比如在32位系统上整数类型为<code>Int32</code>,在64位系统上整数类型为<code>Int64</code></p>
+</section>
+<section id="浮点数" class="slide level1">
+<h1>浮点数</h1>
+<p>浮点数的-0和-0在二进制表示下不一致(有符号位),但不影响大小比较</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">0.0</span> == -<span class="fl">0.0</span>
+true</code></pre>
+</section>
+<section id="浮点精度" class="slide level1">
+<h1>浮点精度</h1>
+<p>浮点精度可以用函数<code>eps</code>直接求出,比如<code>eps(Float32)</code></p>
+</section>
+<section id="数学算符和基本函数" class="slide level1">
+<h1>数学算符和基本函数</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">表达式</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">+x</td>
+<td style="text-align: left;">unary plus</td>
+<td style="text-align: left;">the identity operation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-x</td>
+<td style="text-align: left;">unary minus</td>
+<td style="text-align: left;">maps values to their additive inverses</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x+y</td>
+<td style="text-align: left;">binary plus</td>
+<td style="text-align: left;">performs addition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x-y</td>
+<td style="text-align: left;">binary minus</td>
+<td style="text-align: left;">performs subtraction</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">表达式</th>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">x*y</td>
+<td style="text-align: left;">times</td>
+<td style="text-align: left;">performs multiplication</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x/y</td>
+<td style="text-align: left;">divide</td>
+<td style="text-align: left;">performs division</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x\y</td>
+<td style="text-align: left;">inverse divide</td>
+<td style="text-align: left;">equivalent to <code>y/x</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x^y</td>
+<td style="text-align: left;">power</td>
+<td style="text-align: left;">raises <code>x</code> to the <code>y</code>th power</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x%y</td>
+<td style="text-align: left;">remainder</td>
+<td style="text-align: left;">equivalent to <code>rem(x,y)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="数值比较" class="slide level1">
+<h1>数值比较</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">表达式</th>
+<th style="text-align: left;">名称</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">equality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!=</code> <code>≠</code></td>
+<td style="text-align: left;">inequality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">less than</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&lt;=</code> <code>≤</code></td>
+<td style="text-align: left;">less than or equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">greater than</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;=</code> <code>≥</code></td>
+<td style="text-align: left;">greater than or equal to</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tips" class="slide level1">
+<h1>Tips</h1>
+<p>可以使用类似于<code>1&lt;x&lt;2</code> 这样更自然的表达</p>
+</section>
+<section id="复数和分数" class="slide level1">
+<h1>复数和分数</h1>
+<p>复数和分数是两个内建的类型,已经为他们写好了几乎所有的函数和运算符</p>
+</section>
+<section id="复数" class="slide level1">
+<h1>复数</h1>
+<p>虚数单位是<code>im</code></p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">1</span>+<span class="fl">2im</span>
+<span class="fl">1</span> + <span class="fl">2im</span></code></pre>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; real(<span class="fl">1</span>+<span class="fl">2im</span>)
+<span class="fl">1</span>
+julia&gt; imag(<span class="fl">1</span>+<span class="fl">2im</span>)
+<span class="fl">2</span>
+julia&gt; conj(<span class="fl">1</span>+<span class="fl">2im</span>)
+<span class="fl">1</span> - <span class="fl">2im</span>
+julia&gt; abs(<span class="fl">1</span>+<span class="fl">2im</span>)
+<span class="fl">2.23606797749979</span>
+julia&gt; angle(<span class="fl">1</span> + <span class="fl">2im</span>)
+<span class="fl">1.1071487177940904</span></code></pre>
+</section>
+<section id="构造函数" class="slide level1">
+<h1>构造函数</h1>
+<p>虚数的构造函数是<code>complex</code></p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; complex(<span class="fl">1</span>,<span class="fl">2</span>)
+<span class="fl">1</span> + <span class="fl">2im</span></code></pre>
+</section>
+<section id="分数" class="slide level1">
+<h1>分数</h1>
+<p>分数线用<code>//</code>表示,比如<span class="math">$\frac{2}{3}$</span>在julia中写作<code>2//3</code>,所有的分数会自动化简为真分数,比如</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">6</span>//<span class="fl">9</span>
+<span class="fl">2</span>//<span class="fl">3</span></code></pre>
+</section>
+<section id="字符串" class="slide level1">
+<h1>字符串</h1>
+<p>字符串存在一个数组中</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; str = <span class="st">&quot;Hello, world.</span>\n<span class="st">&quot;</span>
+<span class="st">&quot;Hello, world.</span>\n<span class="st">&quot;</span>
+
+julia&gt; str[<span class="fl">1</span>]
+<span class="ch">&#39;H&#39;</span>
+
+julia&gt; str[<span class="fl">6</span>]
+<span class="ch">&#39;,&#39;</span>
+
+julia&gt; str[<span class="kw">end</span>]
+<span class="ch">&#39;\n&#39;</span></code></pre>
+</section>
+<section id="函数" class="slide level1">
+<h1>函数</h1>
+<p>函数声明如下</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> f(x,y)
+    <span class="kw">return</span> x+y
+<span class="kw">end</span></code></pre>
+<p><code>return</code> 关键会返回后面跟随的值,并退出函数</p>
+<p>julia支持多返回值,比如</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(x,y)
+    <span class="kw">return</span> x,y
+<span class="kw">end</span></code></pre>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<p>将以tuple类型返回多个值</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>)
+(<span class="fl">1</span>,<span class="fl">2</span>)</code></pre>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<p>函数也可以用这样简单的方式声明</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">f(x) = sqrt(x)+<span class="fl">1</span>
+
+julia&gt; f(<span class="fl">1</span>)
+<span class="fl">2</span></code></pre>
+</section>
+<section id="运算符也是函数" class="slide level1">
+<h1>运算符也是函数</h1>
+</section>
+<section id="匿名函数" class="slide level1">
+<h1>匿名函数</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; x-&gt;x^<span class="fl">2</span>+x
+(anonymous <span class="kw">function</span>)
+
+julia&gt; <span class="kw">function</span> (x)
+            x^<span class="fl">2</span> + <span class="fl">2</span>x - <span class="fl">1</span>
+       <span class="kw">end</span>
+(anonymous <span class="kw">function</span>)</code></pre>
+</section>
+<section id="匿名函数很有用举个例子" class="slide level1">
+<h1>匿名函数很有用,举个例子</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># 找出值为1的元素在数组中的位置</span>
+julia&gt; find(x-&gt;x==<span class="fl">1</span>,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>])
+<span class="fl">2</span>-element <span class="dt">Array</span>{<span class="dt">Int64</span>,<span class="fl">1</span>}:
+ <span class="fl">1</span>
+ <span class="fl">4</span></code></pre>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<p>函数的变量不需要专门进行类型约束,但在需要的时候(比如需要提高程序性能),可以用<code>::</code>来强制变量类型</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">function</span> foo(a::<span class="dt">Int64</span>)
+       <span class="kw">return</span> a
+       <span class="kw">end</span>
+foo (generic <span class="kw">function</span> with <span class="fl">2</span> methods)
+
+julia&gt; foo(<span class="fl">1.1</span>)
+ERROR: MethodError: `foo` has no method matching foo(::<span class="dt">Float64</span>)</code></pre>
+</section>
+<section id="函数变量中可以出现可选变量" class="slide level1">
+<h1>函数变量中可以出现可选变量</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(a = <span class="fl">1</span>)
+    <span class="kw">return</span> a
+<span class="kw">end</span>
+
+julia&gt; foo()
+<span class="fl">1</span>
+julia&gt; foo(<span class="fl">2</span>)
+<span class="fl">2</span> </code></pre>
+</section>
+<section id="可以出现关键词变量" class="slide level1">
+<h1>可以出现关键词变量</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(x,y;t=<span class="fl">1</span>)
+    print(<span class="st">&quot;x = $(x),y = $(y),t=$(t)&quot;</span>)
+<span class="kw">end</span>
+
+julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>)
+x = <span class="fl">1</span>,y = <span class="fl">2</span>,t=<span class="fl">1</span>
+julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>,t=<span class="fl">2</span>)
+x = <span class="fl">1</span>,y = <span class="fl">2</span>,t=<span class="fl">2</span>
+julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>)
+ERROR: MethodError: `foo` has no method matching foo(::<span class="dt">Int64</span>, ::<span class="dt">Int64</span>, ::<span class="dt">Int64</span>)</code></pre>
+</section>
+<section id="section-10" class="slide level1">
+<h1></h1>
+<p>注意函数中的变量都是call by reference,但函数中不允许改变除了Array类型以外的外部变量的值.如果所创建的函数对外部值进行了修改,则在<strong>Julia的命名规范</strong>中建议以<code>xxx!</code>的形式进行命名,比如</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo!(x::<span class="dt">AbstractArray</span>)
+    x[<span class="fl">1</span>] = <span class="fl">2</span>
+<span class="kw">end</span></code></pre>
+</section>
+<section id="if-else语句" class="slide level1">
+<h1>if else语句</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">if</span> x &lt; y
+  println(<span class="st">&quot;x is less than y&quot;</span>)
+<span class="kw">elseif</span> x &gt; y
+  println(<span class="st">&quot;x is greater than y&quot;</span>)
+<span class="kw">else</span>
+  println(<span class="st">&quot;x is equal to y&quot;</span>)
+<span class="kw">end</span></code></pre>
+</section>
+<section id="abc" class="slide level1">
+<h1>a?b:c</h1>
+<p>如果a为<code>true</code> 那么执行<code>b</code>,如果a为<code>false</code> 执行<code>c</code></p>
+</section>
+<section id="loops" class="slide level1">
+<h1>Loops</h1>
+</section>
+<section id="while" class="slide level1">
+<h1>while</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; i = <span class="fl">1</span>;
+
+julia&gt; <span class="kw">while</span> i &lt;= <span class="fl">5</span>
+         println(i)
+         i += <span class="fl">1</span>
+       <span class="kw">end</span>
+<span class="fl">1</span>
+<span class="fl">2</span>
+<span class="fl">3</span>
+<span class="fl">4</span>
+<span class="fl">5</span></code></pre>
+</section>
+<section id="for" class="slide level1">
+<h1>for</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">for</span> i = <span class="fl">1</span>:<span class="fl">5</span>
+         println(i)
+       <span class="kw">end</span>
+<span class="fl">1</span>
+<span class="fl">2</span>
+<span class="fl">3</span>
+<span class="fl">4</span>
+<span class="fl">5</span></code></pre>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">for</span> i <span class="kw">in</span> [<span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">0</span>]
+         println(i)
+       <span class="kw">end</span>
+<span class="fl">1</span>
+<span class="fl">4</span>
+<span class="fl">0</span>
+
+julia&gt; <span class="kw">for</span> s <span class="kw">in</span> [<span class="st">&quot;foo&quot;</span>,<span class="st">&quot;bar&quot;</span>,<span class="st">&quot;baz&quot;</span>]
+         println(s)
+       <span class="kw">end</span>
+foo
+bar
+baz</code></pre>
+</section>
+<section id="变量" class="slide level1">
+<h1>变量</h1>
+<p>变量可以用<code>type</code>来创建,类似与c++和python的<code>class</code>,但由于Julia的面向对象采用的是多重派发,并不支持在类型内部创建属于本类型的函数(method),但可以穿件构造函数</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">type</span> foo
+    a::<span class="dt">Int64</span>
+    b
+    foo(x,y) = new(x,y)
+<span class="kw">end</span></code></pre>
+<p><code>new</code>函数按照顺序给<code>foo</code>中的两个变量赋值</p>
+</section>
+<section id="使用packagemodules" class="slide level1">
+<h1>使用package/modules</h1>
+<p>module关键词提供了命名空间,一般类库或者框架都会用module进行封装.使用某个库的方法是(以IJulia为例)</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">using IJulia
+notebook()</code></pre>
+</section>
+<section id="section-12" class="slide level1">
+<h1></h1>
+<p>这样就将在<code>IJulia</code> 这个module中<code>export</code> 出的函数(包括构造函数)直接放在了当前的名字空间里.</p>
+<p>而如果采用 <code>import</code> 则需要先指出名字空间</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">import</span> IJulia
+IJulia.notebook()</code></pre>
+</section>
+<section id="安装package" class="slide level1">
+<h1>安装package</h1>
+<p>Julia大部分的开源库都会托管在github上,Julia内置了git,可以自动从github等网站上下载库文件.</p>
+<p>若某个库的名字叫<code>xxx</code>使用<code>Pkg.add(&quot;xxx&quot;)</code>就可以自动安装这个库</p>
+</section>
+<section id="矩阵" class="slide level1">
+<h1>矩阵</h1>
+<p>Julia的矩阵是直接用数组进行声明的,并且是列主序的</p>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<p>若要声明一个矩阵 <br /><span class="math">$$
+\begin{pmatrix}
+1 &amp; 0\\
+2 &amp; 1
+\end{pmatrix}
+$$</span><br /></p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; [<span class="fl">1</span> <span class="fl">0</span>;<span class="fl">2</span> <span class="fl">1</span>]
+<span class="fl">2</span>x2 <span class="dt">Array</span>{<span class="dt">Int64</span>,<span class="fl">2</span>}:
+ <span class="fl">1</span>  <span class="fl">0</span>
+ <span class="fl">2</span>  <span class="fl">1</span></code></pre>
+</section>
+<section id="section-14" class="slide level1">
+<h1></h1>
+<p>矩阵计算会自动调用在安装时配置的BLAS库,默认的BLAS是openBLAS.在小型服务器和个人电脑上表现可能会比MKL好.</p>
+</section>
+<section id="稀疏矩阵" class="slide level1">
+<h1>稀疏矩阵</h1>
+<p>使用<code>sparse</code>函数将dense matrix转化为稀疏矩阵存储</p>
+<pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; sparse([<span class="fl">0</span> <span class="fl">1</span>;<span class="fl">1</span> <span class="fl">0</span>])
+<span class="fl">2</span>x2 sparse matrix with <span class="fl">2</span> <span class="dt">Int64</span> entries:
+    [<span class="fl">2</span>, <span class="fl">1</span>]  =  <span class="fl">1</span>
+    [<span class="fl">1</span>, <span class="fl">2</span>]  =  <span class="fl">1</span></code></pre>
+</section>
+<section id="juliaquantum" class="slide level1">
+<h1>JuliaQuantum</h1>
+<p>JuliaQuantum 是一个使用Julia语言的开源组织,NumFocus为其保护伞组织(为其提供主要支持),致力于用Julia语言实现高性能的量子力学相关计算框架,类库.现在已经有了QuDynamics.jl,QuDirac.jl,QuBase.jl三个正在开发的库,其中QuDynamics.jl是15年参加GSoC的项目.</p>
+<p>NumFocus是一个目标实现更加用户友好,更加高性能的科学计算的开源社区.下面有很多有名的项目如numpy,Julia等等.</p>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
