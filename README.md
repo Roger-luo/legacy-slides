@@ -2,8 +2,8 @@
 
 ## Projects' Slides
 
-- [Optic based TRNG](PhyxEx.html)
-- [Kebab](Kebab.html)
+- [Optic based TRNG](contents/PhyxEx.html)
+- [Kebab](contents/Kebab.html)
 
 ## Julia
 - [Talks on lqcc's group meeting](contents/lqcc.html)
