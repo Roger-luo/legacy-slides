@@ -23,3 +23,6 @@ user@localhost:~{path-to-the-repo}/slides/gen
 ```
 
 Then it will automatically generate slides from markdown files in _contents.
+
+---
+&copy;2016 All rights reserved. Made with [Pandoc](http://pandoc.org) and ♥
