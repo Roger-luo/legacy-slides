@@ -1,5 +1,0 @@
-% Roger
-% haha
-
-#test
-test
