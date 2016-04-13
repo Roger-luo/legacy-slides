@@ -11,3 +11,15 @@
 ### Julia User Meetup Slides
 - [SFD2015 slides](contents/JuliaSFD2015.html)
 - [2016 meetup@Shenzhen]
+
+
+---
+
+This repo is for Roger's slides. All the slides are based on revealjs and is converted by pandoc.
+To use this repo, simply clone the repo to your local computer and type in the command line:
+
+```shell
+user@localhost:~{path-to-the-repo}/slides/gen 
+```
+
+Then it will automatically generate slides from markdown files in _contents.
