@@ -7,5 +7,5 @@ for mdfile in `ls _contents`; do
 done
 
 git add *
-git commit -m"update contents"
+git commit -m"update contents $1"
 git push origin gh-pages
