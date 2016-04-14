@@ -21,9 +21,9 @@ function pandoc(
     @show filename
     @show iname
 
-    args = str2cmdstr("pandoc $(iname).md -o")
+    args = str2cmdstr("pandoc $(iname).md")
 
-    o!=nothing?str2cmdstr(args,"$(iname).html"):o
+    o!=nothing?str2cmdstr(args,"-o $(o)"): str2cmdstr(args,"-o $(iname).html")
 
     toc==true?str2cmdstr(args,"--toc --toc-depth=$(toc_depth)"):nothing
 
@@ -36,6 +36,8 @@ function pandoc(
 
     template!=nothing?str2cmdstr(args,"--template=$(template)"):nothing
 
+    @show string(Cmd(args))
+
     run(Cmd(args))
 end
 
@@ -45,10 +47,13 @@ end
 
 function gen()
     pandoc("README.md";o="index.html",toc=true,toc_depth=2,template="index.revealjs")
+    
+    @show readdir("_contents")
     for file in readdir("_contents")
         file = match(r"(.*).md",file)
         @assert file!=nothing
-        pandoc("_contents/$(file.captures[1]).md";o="contents/$(file).md",revealjs=true,standalone=true,template="slide.revealjs")
+        file = file.captures[1]
+        pandoc("_contents/$(file).md";o="contents/$(file).html",revealjs=true,standalone=true,template="slide.revealjs")
     end
 
     run(`git add *`)
