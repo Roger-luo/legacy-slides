@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="科学计算的银弹" />
+  <title>The Julia Language</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">The Julia Language</h1>
+<h3 class="author">科学计算的银弹</h3>
+<h3 class="date">Roger Luo</h3>
+</section>
+
+
+<section id="平时你怎么做科学计算呢" class="slide level1">
+<h1>平时你怎么做科学计算呢？</h1>
+<p>R? Fortran? C++? C?</p>
+</section>
+<section id="现在" class="slide level1">
+<h1>现在</h1>
+</section>
+<section id="试试julia吧" class="slide level1">
+<h1>试试Julia吧</h1>
+</section>
+<section id="我默认了来听的童鞋都是要装julia的我的slide暂时放在了这里" class="slide level1">
+<h1>我默认了来听的童鞋都是要装Julia的，我的slide暂时放在了这里</h1>
+<p>home.ustc.edu.cn/~rogerluo/slide.html</p>
+</section>
+<section id="如果你没有下载我的slide你可以访问" class="slide level1">
+<h1>如果你没有下载我的slide，你可以访问</h1>
+<p>http://julialang.org/downloads/</p>
+</section>
+<section id="或者自己百度或者google-julialang" class="slide level1">
+<h1>或者自己百度或者google julialang</h1>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<p>windows用户<a href="https://s3.amazonaws.com/julialang/bin/winnt/x64/0.4/julia-0.4.0-win64.exe">戳这里</a></p>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<p>Ubuntu用户可以直接</p>
+<pre><code>sudo apt-get install julia</code></pre>
+<p>或者<a href="https://launchpad.net/~staticfloat/+archive/juliareleases">戳这里</a> 其它Linux用户可以添加ppa:</p>
+<pre><code>ppa:staticfloat/juliareleases</code></pre>
+<p>或者<a href="http://julialang.org/downloads/">戳这里</a>使用其它方式安装</p>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<p>Mac用户 我没有Mac，所以我没有真的安装过，但是你应该可以<a href="https://s3.amazonaws.com/julialang/bin/osx/x64/0.4/julia-0.4.0-osx10.7+.dmg">戳这里</a></p>
+</section>
+<section id="银弹" class="slide level1">
+<h1>银弹？</h1>
+<p>银弹是指某一项技术或方法使软件工程的生产力在十年内提高十倍。 No Silver Bullet应该是一句很有名的话了</p>
+</section>
+<section id="当然有点夸张了" class="slide level1">
+<h1>当然有点夸张了</h1>
+<p>并不知道Julia将来会成为什么</p>
+</section>
+<section id="但是现在对于很多问题julia已经能够胜任了" class="slide level1">
+<h1>但是现在对于很多问题，Julia已经能够胜任了</h1>
+</section>
+<section id="why-create-julia" class="slide level1" data-background="#DAA520" data-background-transition="slide">
+<h1>为什么创造Julia</h1>
+<p>(摘自豆瓣的翻译，我自己懒得翻译了...)</p>
+</section>
+<section id="section-3" class="slide level1" data-background="#DAA520">
+<h1></h1>
+<p>简单的说，因为我们很贪心。</p>
+<p>我们是Matlab的重度用户。我们中间有Lisp高手，Python专家，Ruby专家，还有Perl高手。有些家伙从嘴上无毛的年纪就开始用Mathematica了，当然我们中间也有人现在也还是不长胡子的。我们比正常人画了更多的R图。C更加是我们最喜欢的大杀器。</p>
+<p>我们热爱所有这些语言，他们实在是很好很强大。在我们从事的领域中——包括科学计算、机器学习、数据挖掘、大规模线性代数、分布式与并行计算这些——每种语言都对某些问题来说很完美，但对另一些就变得很糟糕。我们需要做出取舍。</p>
+</section>
+<section id="section-4" class="slide level1" data-background="&quot;#DAA520">
+<h1></h1>
+<p>我们很贪心：我们想要更多。</p>
+<p>我们需要一种语言，它是开源的，有自由的许可。我们需要C语言的速度，又要有Ruby社区的活力。我们需要一种homoiconic风格的编程语言，像Lisp那样有真正的宏，又要有Matlab里那些熟悉的数学概念。我们需要的东西既能像Python那样可以作为通用编程语言使用的工具，又要能够像R那样适用于统计分析，能像Perl那样自然地处理字符串，能像Matlab那样给力地处理矩阵运算，还要能像shell一样能把各种程序粘合在一起。它必须让初学者觉得简单易学，同时又可以让高级用户们挥洒自如。它既要是交互式的，又能被编译执行。</p>
+</section>
+<section id="section-5" class="slide level1" data-background="#DAA520">
+<h1></h1>
+<p>(前面提到过的，它要有C那么快！)</p>
+<p>我们在构思这些需求的时候，我们还发现它得有Hadoop这样强大的分布式能力——却不想要Hadoop里面那些冗繁的Java和XML，不想在几百台机器庞大的日志文件里去寻找那些bug。我们不想要那些令人费解的层次结构。我们想让简单的标量循环能在单个CPU的寄存器里编译出精致的机器代码。我们想要写一个A*B就能让上千台机器为我们完成一次规模庞大的矩阵乘法。</p>
+</section>
+<section id="section-6" class="slide level1" data-background="&quot;#DAA520">
+<h1></h1>
+<p>我们不需要的时候，就不用做类型申明。但我们需要多态函数（polymorphic functions）时，希望能通过泛型编程（generic programming ）使得只写一次的算法能在无穷多的数据类型上套用。我们希望通过多重分派（multiple dispatch ），能够为一个函数所有可能的参数选出最有效的执行方法。这些参数可能有着不同的定义，来自不同的数据类型，却能提供相同的功能。在拥有这些能力得的同时，我们还希望这种语言简单、干净！</p>
+</section>
+<section id="section-7" class="slide level1" data-background="&quot;#DAA520">
+<h1></h1>
+<p>要求有点多，是不是？</p>
+<p>尽管我们意识到了自己有多贪心，我们还是想把这些都统统拥入怀中。大概在两年半之前，我们开始创造这种能满足我们贪念的语言。它还没有完工——但是已经可以发布一个1.0版本了——我们创造的语言叫做Julia。她已经实现了我们那些乱七八糟需求的90%，而现在她需要来自更多人更乱七八糟的需求，来让她走得更远。如果你也是一位贪心不足，不可理喻，需索无度的码场二逼青年，希望你能来试试这个东东。</p>
+</section>
+<section id="正式介绍" class="slide level1" data-background="#6B8E23" data-background-transition="slide">
+<h1>正式介绍</h1>
+<p>(来自官方doc)</p>
+<p>Julia 是个灵活的动态语言，适合科学和数值计算，性能可与传统静态类型语言媲美。</p>
+</section>
+<section id="与传统动态语言的区别" class="slide level1" data-background="#6B8E23">
+<h1>与传统动态语言的区别</h1>
+<ul>
+<li>核心语言很小；标准库是用 Julia 本身写的，如整数运算在内的基础运算</li>
+<li>完善的类型，方便构造对象和做类型声明</li>
+<li>基于参数类型进行函数重载</li>
+<li>参数类型不同，自动生成高效、专用的代码</li>
+<li>高性能，接近静态编译语言，如 C 语言</li>
+</ul>
+</section>
+<section id="其它优势" class="slide level1" data-background="#6B8E23">
+<h1>其它优势</h1>
+<ul>
+<li>免费开源</li>
+<li>自定义类型与内置类型同样高效、紧凑</li>
+<li>不需要把代码向量化；非向量化的代码跑得也很快</li>
+<li>为并行和分布式计算而设计</li>
+<li>低调又牛逼的类型系统</li>
+<li>优雅、可扩展的类型转换</li>
+<li>高效支持 Unicode, 包括且不只 UTF-8</li>
+<li>直接调用 C 函数（不需封装或 API）</li>
+<li>像 Shell 一样强大的管理其他进程的能力</li>
+<li>像 Lisp 一样的宏和其他元编程工具</li>
+</ul>
+</section>
+<section id="一些具体的例子" class="slide level1" data-background="#6B8E23">
+<h1>一些具体的例子</h1>
+</section>
+<section id="数字分隔符" class="slide level1" data-background="#6B8E23">
+<h1>数字分隔符</h1>
+<p>数字分割符可以使数字位数更加清晰：</p>
+<pre><code>julia&gt; a=100_000
+100000</code></pre>
+</section>
+<section id="使用希腊字母" class="slide level1" data-background="#6B8E23">
+<h1>使用希腊字母</h1>
+<p>作为一个(在实验室)天天要写代码的码农,当一个波函数被命名成phi,某个角度值被写成alpha或者xxx.... 作为一个多年使用希腊字母在纸上做验算的人，是不是总觉得这样的代码不够漂亮？</p>
+</section>
+<section id="section-8" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>在julia里打入：</p>
+<pre><code>\phi</code></pre>
+<p>再按Tab试试</p>
+</section>
+<section id="section-9" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p><span class="math"><em>ϕ</em></span>出现了，在Julia里这样的unicode字符可以像其它ASCIII字符一样使用，命名变量，函数名等等</p>
+</section>
+<section id="在julia中调用c或者fortran代码" class="slide level1" data-background="#6B8E23">
+<h1>在Julia中调用C或者Fortran代码</h1>
+<p>被调用的代码应当是共享库的形式，大多数 C 和 Fortran 库都已经被编译为共享库。 如果自己使用 GCC （或 Clang ）编译代码，需要添加 -shared 和 -fPIC 选项</p>
+</section>
+<section id="julia-调用这些库的开销与本地-c-语言相同" class="slide level1" data-background="#6B8E23">
+<h1>Julia 调用这些库的开销与本地 C 语言相同</h1>
+</section>
+<section id="运行外部程序" class="slide level1" data-background="#6B8E23">
+<h1>运行外部程序</h1>
+<p>Julia使用倒引号(``)创建一个cmd对象，用run函数来执行</p>
+<pre><code>run(`eog speed.png`)</code></pre>
+</section>
+<section id="高性能" class="slide level1" data-background="#6B8E23">
+<h1>高性能</h1>
+<p>网传关于Julia的图最多的除了某国演员外应该就是这张图了</p>
+<figure>
+<img src="speed.png" alt="C的性能为1.0" /><figcaption>C的性能为1.0</figcaption>
+</figure>
+</section>
+<section id="容易上手" class="slide level1" data-background="#6B8E23">
+<h1>容易上手</h1>
+<p>Julia的语法和python,MATLAB以及C有很多相似之处，它被设计成能让新手迅速掌握，又能让高手灵活发挥</p>
+</section>
+<section id="让我们先来写一个最经典的hello-world程序" class="slide level1" data-background="#CD5C5C" data-background-transition="slide">
+<h1>让我们先来写一个最经典的hello world程序</h1>
+<pre><code>print(&quot;hello world\n&quot;)</code></pre>
+<p>如果学过python的同学会发现和python并不只是像...</p>
+</section>
+<section id="让我再进一步写一个hello-world程序" class="slide level1" data-background="#CD5C5C">
+<h1>让我再进一步，写一个hello world程序</h1>
+</section>
+<section id="定义一个字符串" class="slide level1" data-background="#CD5C5C">
+<h1>定义一个字符串</h1>
+<pre><code>str = &quot;hello world\n&quot;</code></pre>
+<p>}</p>
+</section>
+<section id="打印这个字符串" class="slide level1" data-background="#CD5C5C">
+<h1>打印这个字符串</h1>
+<pre><code>print(str)</code></pre>
+<p>}</p>
+</section>
+<section id="换一种方式打印" class="slide level1" data-background="#CD5C5C">
+<h1>换一种方式打印</h1>
+<pre><code>print(&quot;我要打印$(str)!&gt;_&lt;\n&quot;)</code></pre>
+<p>}</p>
+<p>可以看到输出了这个字符串str的值</p>
+</section>
+<section id="在julia中输出一个变量的值不需要说明类型在字符串中写入需要打印的变量即可" class="slide level1" data-background="#CD5C5C">
+<h1>在Julia中输出一个变量的值不需要说明类型，在字符串中$()写入需要打印的变量即可</h1>
+</section>
+<section id="让我们来写一个简单的抛物运动的模拟程序" class="slide level1" data-background="#6B8E23">
+<h1>让我们来写一个简单的抛物运动的模拟程序</h1>
+</section>
+<section id="定义重力加速度常量g" class="slide level1" data-background="#6B8E23">
+<h1>定义重力加速度常量g</h1>
+<pre><code>const g = 9.8#m/s²</code></pre>
+</section>
+<section id="迭代速度" class="slide level1" data-background="#6B8E23">
+<h1>迭代速度</h1>
+<pre><code>function next_speed(v,dt=1e-6)
+    res = [v[1],v[2]-g⋅dt]
+    return res
+end</code></pre>
+</section>
+<section id="在julia里函数的声明是function而在python中是def" class="slide level1" data-background="#6B8E23">
+<h1>在Julia里函数的声明是function而在python中是def</h1>
+</section>
+<section id="julia的代码块是由end关键字来结尾的" class="slide level1" data-background="#6B8E23">
+<h1>Julia的代码块是由end关键字来结尾的</h1>
+</section>
+<section id="函数的返回值和python一样都是return" class="slide level1" data-background="#6B8E23">
+<h1>函数的返回值和python一样都是return</h1>
+</section>
+<section id="迭代位置" class="slide level1" data-background="#6B8E23">
+<h1>迭代位置</h1>
+<pre><code>function next_timestep(pos,v,dt=1e-6)
+    res = [pos[1]+v[1]⋅dt,pos[2]+v[2]⋅dt]
+    return res
+end</code></pre>
+</section>
+<section id="现在来写抛物线的代码" class="slide level1" data-background="#6B8E23">
+<h1>现在来写抛物线的代码</h1>
+<pre><code>function parabola(initial_pos,initial_v,file,dt=1e-6)</code></pre>
+<p>initial_pos是初始位置,initial_v是初始速度,file是我们要输出的数据文件名,dt就是时间步长了</p>
+</section>
+<section id="写一些赋值语句让初始值定义进来" class="slide level1" data-background="#6B8E23">
+<h1>写一些赋值语句，让初始值定义进来</h1>
+<pre><code>function parabola(initial_pos,initial_v,file,dt=1e-6)
+    MAX_TIMESTEP = 100
+    cur_pos = initial_pos
+    cur_v   = initial_v
+end</code></pre>
+</section>
+<section id="打开一个文件在julia中打开一个文件需要使用open函数用法和c语言的fopen很像" class="slide level1" data-background="#6B8E23">
+<h1>打开一个文件,在Julia中打开一个文件需要使用open函数,用法和c语言的fopen很像</h1>
+</section>
+<section id="section-10" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<pre><code>function parabola(initial_pos,initial_v,file,dt=1e-6)
+    MAX_TIMESTEP = 100
+    cur_pos = initial_pos
+    cur_v   = initial_v
+    f = open(file,&quot;w&quot;)
+end</code></pre>
+</section>
+<section id="如果不知道open具体怎么用怎么办" class="slide level1" data-background="#6B8E23">
+<h1>如果不知道open具体怎么用怎么办？</h1>
+</section>
+<section id="输入" class="slide level1" data-background="#6B8E23">
+<h1>输入</h1>
+<pre><code>@doc open</code></pre>
+<p>就可以看到open函数的文档</p>
+</section>
+<section id="for循环" class="slide level1" data-background="#6B8E23">
+<h1>for循环</h1>
+</section>
+<section id="section-11" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<pre><code>function parabola(initial_pos,initial_v,file,dt=1e-6)
+    MAX_TIMESTEP = 100
+    cur_pos = initial_pos
+    cur_v   = initial_v
+    f = open(file,&quot;w&quot;)
+    
+    #####################################
+    ####        For  Loop       ####################
+    for i in [1:MAX_TIMESTEP]
+        cur_pos = next_timestep(cur_pos,cur_v,dt)
+        cur_v   = next_speed(cur_v,dt)
+        write(f,&quot;$(cur_pos[1])\t$(cur_pos[2])\t$(i*dt)\n&quot;)
+    end
+    #####################################
+    close(f)
+end</code></pre>
+</section>
+<section id="最后不要忘记关闭文件" class="slide level1" data-background="#6B8E23">
+<h1>最后不要忘记关闭文件</h1>
+<pre><code>close(f)</code></pre>
+</section>
+<section id="然后调用这个函数" class="slide level1" data-background="#6B8E23">
+<h1>然后调用这个函数</h1>
+<pre><code>parabola([0,2],[1,0],&quot;line.txt&quot;)</code></pre>
+</section>
+<section id="绘图" class="slide level1">
+<h1>绘图</h1>
+<p>绘图可以采用python的绘图库matplotlib,这个库在Julia中是PyPlot.jl它需要你已经安装了PyCall.jl用来调用python函数</p>
+</section>
+<section id="section-12" class="slide level1">
+<h1></h1>
+<p>也可以使用外部绘图程序如gnuplot等,就像我们之前使用的一样直接用run在命令行中调用即可</p>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<p>当然julia本身也是有一些绘图库的，比如winston，gadfly等，甚至还有ASCIIPlots这种卖萌的东西</p>
+</section>
+<section id="这里为了简单不一定是最好的使用gnuplot来完成模拟数据的可视化" class="slide level1">
+<h1>这里为了简单(不一定是最好的)使用gnuplot来完成模拟数据的可视化</h1>
+</section>
+<section id="运行已经写好的gnuplot脚本" class="slide level1">
+<h1>运行已经写好的gnuplot脚本</h1>
+<pre><code>run(`gnuplot draw.gnu`)</code></pre>
+</section>
+<section id="用linux自带图片查看器查看图片" class="slide level1">
+<h1>用linux自带图片查看器查看图片</h1>
+<pre><code>run(`eog path.png`)</code></pre>
+</section>
+<section id="section-14" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/path.png" />
+</figure>
+</section>
+<section id="你的需求没有解决" class="slide level1">
+<h1>你的需求没有解决？</h1>
+<p>何必对一门只有0.4版本的语言这么急呢？</p>
+<p>开发组非常活跃，请直接前往Github提出你的问题</p>
+</section>
+<section id="junoijuliasublime-text" class="slide level1">
+<h1>Juno\IJulia\Sublime Text</h1>
+</section>
+<section id="section-15" class="slide level1">
+<h1></h1>
+<p>如果想使用这样一门语言，一款养眼又好用的编辑器是很重要的，这是我问了一些julia用户得到的结果：</p>
+<ul>
+<li>Juno是julia的官方IDE，基于最近很火atom开发，虽然我也不得不说有时候Juno会出点毛病，但是对于Julia特性的支持应该是最好的</li>
+<li>Sublime Text作为一款著名的编辑器，当然也有关于Julia的插件，提供了高亮，unicode自动补全(不知为何有时候会失灵)</li>
+<li>Ijulia是一款基于Ipython开发的网页编辑器，长得和ipython的notebook一样，但是可以编译julia</li>
+<li>juliabox 是一款在线编辑器，基于IJulia，然而如果没有加速服务国内访问暂时还很慢，很有可能什么都看不到</li>
+</ul>
+</section>
+<section id="sublime-textjulia-completions" class="slide level1">
+<h1>Sublime Text:Julia Completions</h1>
+<p>打开Installed Packages,中JuliaCompletions.sublime-package这个包中的julia-ustf.sublime-completions,如果其中有keyword.operator.arithmetic.julia 删去它,否则补全功能可能不能正常使用</p>
+</section>
+<section id="加入ustc-julia-user-group" class="slide level1">
+<h1>加入USTC Julia User Group</h1>
+<p>USTC Julia User Group是一个正在筹建中的兴趣小组，目的是增(<em>An</em>)加(<em>Li</em>)Julia用户人数，互相交流学习这门语言， 同时作为一个(也许是中国第一个)比较正式的Julia User Group为我们学校的Julia用户提供各种指导（前提得是有人会） 并且还可以作为大家组建Julia扩展包开发组的平台，共同帮助一门更加适用于科学界的编程语言成长。</p>
+</section>
+<section id="qq群316628299" class="slide level1">
+<h1>QQ群:316628299</h1>
+</section>
+<section id="julia还很年轻" class="slide level1">
+<h1>Julia还很年轻</h1>
+</section>
+<section id="但我认为她将会是最适合学术界使用的语言" class="slide level1">
+<h1>但我认为她将会是最适合学术界使用的语言</h1>
+<p>Fortran的特性已经很老了，而当使用计算机时，作为一个非计算机科学专业的研究工作者， 如果不是因为兴趣，那么他更应当关注理论本身，同时也要尽可能地完整地用到本世纪最强大的工具 numpy+python的组合固然很好，但专为科学计算设计的Julia会更好</p>
+</section>
+<section id="还没结束" class="slide level1">
+<h1>还没结束</h1>
+</section>
+<section id="有请和开发组一起che过的徐浩童鞋" class="slide level1">
+<h1>有请和开发组一起che过的徐浩童鞋</h1>
+</section>
+<section id="section-16" class="slide level1">
+<h1><img src="../img/photo.jpg" /></h1>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

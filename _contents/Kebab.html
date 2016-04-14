@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="The Quantum Computation Simulation Framework" />
+  <title>Kebab</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Kebab</h1>
+<h3 class="author">The Quantum Computation Simulation Framework</h3>
+<h3 class="date">Roger Luo</h3>
+</section>
+
+
+<section id="whats-kebab" class="slide level1">
+<h1>What's Kebab?</h1>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<p>Kebab is a opensource simulation framework for quantum computation written in Julia language.Kebab aims to realize quantum algorithm simulation in different level(eg.hardware level/software level/...) under different computation model and provide useful support for experiments.</p>
+</section>
+<section id="why-kebab" class="slide level1">
+<h1>Why Kebab?</h1>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/quantum_circuit.svg" />
+</figure>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<p>Cause the framework is based on quantum circuit. All the operations are written into a quantum-gate-like module. And quantum circuit looks like a kebab.</p>
+</section>
+<section id="why-julia" class="slide level1">
+<h1>Why Julia</h1>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<p>Julia is a fast and effient dynamic language support lots of modern technologies. eg. cothread,distribution computation,cloud computation...</p>
+</section>
+<section id="what-can-kebab-do" class="slide level1">
+<h1>What can Kebab do?</h1>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<p>Kebab have serveral functions at present</p>
+<ul>
+<li>qunatum circuit simulation</li>
+<li>basic quantum gates,eg. Hadamard gate,Pauli gates,C-NOT...</li>
+<li>adiabatic quantum computation simulation</li>
+<li>deamo-like cooling module</li>
+<li>quantum fourier transformation</li>
+</ul>
+</section>
+<section id="whats-on-the-to-do-list" class="slide level1">
+<h1>What's on the to-do list?</h1>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<ul>
+<li>quantum error correction</li>
+<li>Shor algorithm</li>
+<li>one-way computation model</li>
+<li>topological quantum computation</li>
+<li>performance optimization</li>
+<li>quantum circuit optimization</li>
+<li>quantum deep learning</li>
+<li>...</li>
+</ul>
+</section>
+<section id="some-basic-examples" class="slide level1">
+<h1>Some Basic Examples</h1>
+</section>
+<section id="first" class="slide level1">
+<h1>First</h1>
+</section>
+<section id="some-basic-concepts" class="slide level1">
+<h1>Some basic concepts</h1>
+</section>
+<section id="exact-cover-problem" class="slide level1">
+<h1>Exact Cover Problem</h1>
+<p>The Exact Cover problem is about a sequence of clause for n-bits</p>
+<p><br /><span class="math"><em>C</em><sub>1</sub> ∧ <em>C</em><sub>2</sub> ∧ …<em>C</em><sub><em>M</em></sub></span><br /></p>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<p>each clauses involves 3 bits,and the question is what kind of value can these n bits satisfy this sequence of clause?</p>
+</section>
+<section id="adiabatic-computation" class="slide level1">
+<h1>Adiabatic Computation</h1>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<p>First a Hamiltonian can be constructed as following: <br /><span class="math"><em>H</em>(<em>s</em>) = (1 − <em>s</em>)<em>H</em><sub><em>B</em></sub> + <em>s</em> ⋅ <em>H</em><sub><em>P</em></sub> 0 ≤ <em>s</em> ≤ 1</span><br /></p>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<p>where, <br /><span class="math">$$
+H_B^{(i)} = \frac{1}{2}(1-\sigma_{x}^{(i)})\quad with\quad \sigma_x^{(i)}=\begin{pmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{pmatrix}
+$$</span><br /></p>
+<p><br /><span class="math"><em>H</em><sub><em>B</em></sub> = ∑<em>H</em><sub><em>B</em></sub><sup>(<em>i</em>)</sup></span><br /></p>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<p><br /><span class="math"><em>H</em><sub><em>P</em>, <em>C</em></sub>(|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩) = <em>h</em><sub><em>C</em></sub>(<em>z</em><sub><em>i</em><em>C</em></sub>, <em>z</em><sub><em>j</em><em>C</em></sub>, <em>z</em><sub><em>k</em><em>C</em></sub>)|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩</span><br /></p>
+</section>
+<section id="cost-function" class="slide level1">
+<h1>Cost Function</h1>
+<p>The function <span class="math"><em>h</em><sub><em>C</em></sub></span> is called cost function</p>
+</section>
+<section id="section-10" class="slide level1">
+<h1></h1>
+<p>for example,</p>
+<p><br /><span class="math">$$
+h_C = \begin{cases}
+0 \quad \text{if the clause is satisfied}\\
+1 \quad \text{if the clause is violated}
+\end{cases}
+$$</span><br /></p>
+<p>whose concept is actually the same with classical search algorithms.</p>
+</section>
+<section id="how-does-the-adiabatic-computation-work" class="slide level1">
+<h1>How does the Adiabatic Computation Work?</h1>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<p>According to the adiabatic theorm, if the evolution is slow enough,the ground state can be kept during the evolution.</p>
+</section>
+<section id="back-to-our-hamiltonian-again" class="slide level1">
+<h1>Back to our Hamiltonian Again</h1>
+</section>
+<section id="section-12" class="slide level1">
+<h1></h1>
+<p>take s as t/T,where t is the current time and T is the evolution time. <br /><span class="math"><em>H</em> = (1 − <em>t</em>/<em>T</em>)<em>H</em><sub><em>B</em></sub> + <em>t</em>/<em>T</em> ⋅ <em>H</em><sub><em>P</em></sub></span><br /></p>
+</section>
+<section id="at-the-begining" class="slide level1">
+<h1>At the begining</h1>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<p>H is actually <span class="math"><em>H</em><sub><em>B</em></sub></span>,and the ground state of <span class="math"><em>H</em><sub><em>B</em></sub></span> is designed to Bell state.</p>
+</section>
+<section id="arrives-the-final" class="slide level1">
+<h1>Arrives the final</h1>
+</section>
+<section id="section-14" class="slide level1">
+<h1></h1>
+<p>H becomes <span class="math"><em>H</em><sub><em>P</em></sub></span>, and we get the ground state of <span class="math"><em>H</em><sub><em>P</em></sub></span>, which is the answer to a given problem.Even the problem does not actually have an answer, the algorithm can find the best-match answer.</p>
+</section>
+<section id="section-15" class="slide level1">
+<h1></h1>
+<p>by this APIs offered by Kebab.We can easily simulate how a adiabatic quanutm computer work on a 3-EC problem.</p>
+</section>
+<section id="a-7-bits-system" class="slide level1">
+<h1>A 7-bits System</h1>
+</section>
+<section id="system-statement" class="slide level1">
+<h1>System Statement</h1>
+</section>
+<section id="section-16" class="slide level1">
+<h1></h1>
+<pre class="sourceCode julia"><code class="sourceCode julia">H = AdiaSystem([TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]),
+    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>]),
+    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]),
+    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>]),
+    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">6</span>]),
+    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">6</span>]), 
+    ],<span class="fl">7</span>,<span class="fl">1e3</span>)</code></pre>
+</section>
+<section id="operate-the-adiabatic-evolution" class="slide level1">
+<h1>Operate the Adiabatic Evolution</h1>
+</section>
+<section id="section-17" class="slide level1">
+<h1></h1>
+<pre><code>eigens = TimeEvoModule!(state,Hs,1;dt=1e-2)</code></pre>
+</section>
+<section id="plot-the-eigen-energy" class="slide level1">
+<h1>Plot the Eigen Energy</h1>
+</section>
+<section id="section-18" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/3EC-7bit.png" />
+</figure>
+</section>
+<section id="however" class="slide level1">
+<h1>However</h1>
+</section>
+<section id="section-19" class="slide level1">
+<h1></h1>
+<p>There's a big flaw of adiabatic computation model. The eigen energy of Hamiltonian should not cross during the evolution, or the result cannot be garanteed as ground state.</p>
+</section>
+<section id="here-comes-the-cooling" class="slide level1">
+<h1>Here comes the cooling!</h1>
+</section>
+<section id="section-20" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/circuit.png" />
+</figure>
+</section>
+<section id="section-21" class="slide level1">
+<h1></h1>
+<p>We use the cooling module near places that ground state is close to other eigen values.To help it keep ground state.</p>
+</section>
+<section id="section-22" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/7bit.png" />
+</figure>
+</section>
+<section id="section-23" class="slide level1">
+<h1></h1>
+<p>For a time reason, We do not test other condition.</p>
+</section>
+<section id="quantum-circuit-computation" class="slide level1">
+<h1>Quantum Circuit Computation</h1>
+</section>
+<section id="section-24" class="slide level1">
+<h1></h1>
+<p>Quantum circuit computation is an important model in quantum computation.</p>
+</section>
+<section id="lets-do-this-with-an-example" class="slide level1">
+<h1>Let's do this with an example</h1>
+</section>
+<section id="quantum-fourier-transformation" class="slide level1">
+<h1>Quantum Fourier transformation</h1>
+</section>
+<section id="section-25" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/fourier.svg" />
+</figure>
+</section>
+<section id="section-26" class="slide level1">
+<h1></h1>
+<p>Kebab offers single qubit gates and double qubit control gates.</p>
+</section>
+<section id="section-27" class="slide level1">
+<h1></h1>
+<p>some commonly used gates have already have wrappers,eg.</p>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="co">#Hadamard gate</span>
+<span class="kw">function</span> Hadamard(state::<span class="dt">AbstractVector</span>,ID::<span class="dt">Integer</span>)
+
+<span class="co">#Controled R_k gate</span>
+<span class="kw">function</span> C_R_k(
+    state::<span class="dt">AbstractVector</span>,
+    CID::<span class="dt">Integer</span>,UCID::<span class="dt">Integer</span>,
+    k::<span class="dt">Integer</span>
+    )</code></pre>
+</section>
+<section id="section-28" class="slide level1">
+<h1></h1>
+<p>we use this two gates to build the quantum circuit of quantum fourier transformation</p>
+</section>
+<section id="for-a-single-qubit" class="slide level1">
+<h1>For a single qubit</h1>
+</section>
+<section id="section-29" class="slide level1">
+<h1></h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> SingleQubitQFT!(state::<span class="dt">AbstractVector</span>,bitID::<span class="dt">Integer</span>)
+    state_len = length(state)
+    bit_num = <span class="dt">Int</span>(log2(state_len))
+
+    @assert bitID&lt;=bit_num <span class="st">&quot;bit ID out of bounds&quot;</span>
+    
+    copy!(state,Hadamard(state,bitID))
+    <span class="kw">for</span> i=<span class="fl">1</span>:(bitID-<span class="fl">1</span>)
+        copy!(state,C_R_k(state,bitID-i,bitID,i))
+    <span class="kw">end</span>
+    <span class="kw">return</span> state
+<span class="kw">end</span></code></pre>
+</section>
+<section id="for-every-bit" class="slide level1">
+<h1>For every bit</h1>
+<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> QFT!(state::<span class="dt">AbstractVector</span>)
+    state_len = length(state)
+    bit_num = <span class="dt">Int</span>(log2(state_len))
+
+    i = bit_num
+    <span class="kw">while</span> i&gt;<span class="fl">0</span>
+        SingleQubitQFT!(state,i)
+        i-=<span class="fl">1</span>
+    <span class="kw">end</span>
+    <span class="kw">return</span> state
+<span class="kw">end</span></code></pre>
+</section>
+<section id="kebab-is-opensource" class="slide level1">
+<h1>Kebab is OpenSource!</h1>
+</section>
+<section id="follow-me-on-github" class="slide level1">
+<h1>Follow <a href="https://github.com/Roger-luo/Kebab">me</a> on github!</h1>
+</section>
+<section id="just-tell-me-what-you-want" class="slide level1">
+<h1>Just Tell me What you want</h1>
+</section>
+<section id="prs-are-welcome" class="slide level1">
+<h1>PRs are Welcome!</h1>
+</section>
+<section id="thanks" class="slide level1">
+<h1>Thanks</h1>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
