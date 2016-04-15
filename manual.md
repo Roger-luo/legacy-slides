@@ -43,3 +43,7 @@ configuration should be included in `{}`
 > - fragment 2
 > - fragment 3
 ```
+
+
+---
+&copy;2016 All rights reserved. Made with [Pandoc](http://pandoc.org) and [Julia](http://julialang.org)

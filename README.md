@@ -17,4 +17,4 @@
 How to use this? see [manual](manual.html)
 
 ---
-&copy;2016 All rights reserved. Made with [Pandoc](http://pandoc.org) and ♥
+&copy;2016 All rights reserved. Made with [Pandoc](http://pandoc.org) and [Julia](http://julialang.org)
