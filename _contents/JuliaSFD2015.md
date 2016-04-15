@@ -11,7 +11,7 @@ R? Fortran? C++? C?
 
 #我默认了来听的童鞋都是要装Julia的，我的slide暂时放在了这里
 
-home.ustc.edu.cn/~rogerluo/slide.html
+rogerluo.cc/slides
 
 #如果你没有下载我的slide，你可以访问
 

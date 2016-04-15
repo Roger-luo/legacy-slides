@@ -15,22 +15,31 @@
     <div class="container">
       <div id="markup">
         <article id="content" class="markdown-body">
-        <h1 id="roger-luos-slides">Roger Luo's Slides</h1>
-        <h2 id="projects-slides">Projects' Slides</h2>
+        <h1 id="manual">Manual</h1>
+        <p>This a manual for revealjs based slide</p>
+        <hr />
+        <p>This repo is for Roger's slides. All the slides are based on revealjs and is converted by pandoc. To use this repo, simply clone the repo to your local computer and type in the command line:</p>
+        <pre class="shell"><code>user@localhost:~{path-to-the-repo}/slides/ ./gen </code></pre>
+        <p>Then it will automatically generate slides from markdown files in _contents.</p>
+        <p>or you can use the <a href="http://julialang.org">Julia</a> script to generate files:</p>
+        <pre class="sourceCode julia"><code class="sourceCode julia">user@localhost:~{path-to-the-repo}/slides/ julia gen.jl</code></pre>
+        <h2 id="frame">frame</h2>
+        <p>each frame is marked by <code>#</code>:</p>
+        <pre class="sourceCode markdown"><code class="sourceCode markdown"><span class="fu"># (new frame title)</span>
+        
+        <span class="fu"># another frame</span>
+        <span class="fu">## smaller title</span></code></pre>
+        <h2 id="frame-configuration">frame configuration</h2>
+        <p>configuration should be included in <code>{}</code></p>
         <ul>
-        <li><a href="contents/PhyxEx.html">Optic based TRNG</a></li>
-        <li><a href="contents/Kebab.html">Kebab</a></li>
+        <li><strong>id</strong> :: frame id begin with <code>#</code>,eg. <code>{#this-is-a-frame-id}</code></li>
+        <li><strong>background</strong> :: <code>data-background</code>, eg.<code>{data-background=&quot;#DAA520&quot;}</code></li>
+        <li><strong>background transition</strong> :: <code>data-background-transition</code>,eg.<code>{data-background-transition=&quot;slide&quot;}</code></li>
+        <li><p><strong>fragment</strong> start with <code>&gt; -</code>,eg.</p>
+        <pre class="sourceCode markdown"><code class="sourceCode markdown">&gt;<span class="dt"> - fragment 1</span>
+        <span class="dt">&gt; - fragment 2</span>
+        <span class="dt">&gt; - fragment 3</span></code></pre></li>
         </ul>
-        <h2 id="julia">Julia</h2>
-        <ul>
-        <li><a href="contents/lqcc.html">Talks on lqcc's group meeting</a></li>
-        </ul>
-        <h3 id="julia-user-meetup-slides">Julia User Meetup Slides</h3>
-        <ul>
-        <li><a href="contents/JuliaSFD2015.html">SFD2015 slides</a></li>
-        <li>[2016 meetup@Shenzhen]</li>
-        </ul>
-        <p>©2016 All rights reserved. Made with <a href="http://pandoc.org">Pandoc</a> and ♥</p>
         </article>
       </div>
     </div>

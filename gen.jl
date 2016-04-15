@@ -47,7 +47,8 @@ end
 
 function gen()
     pandoc("README.md";o="index.html",toc=true,toc_depth=2,template="index.revealjs")
-    
+    pandoc("manual.md";o="manual.html",toc=true,toc_depth=2,template="index.revealjs")
+
     @show readdir("_contents")
     for file in readdir("_contents")
         file = match(r"(.*).md",file)

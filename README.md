@@ -14,21 +14,7 @@
 
 
 ---
-
-This repo is for Roger's slides. All the slides are based on revealjs and is converted by pandoc.
-To use this repo, simply clone the repo to your local computer and type in the command line:
-
-```shell
-user@localhost:~{path-to-the-repo}/slides/ ./gen 
-```
-
-Then it will automatically generate slides from markdown files in _contents.
-
-
-or you can use the [Julia](http://julialang.org) script to generate files:
-```julia
-user@localhost:~{path-to-the-repo}/slides/ julia gen.jl
-```
+How to use this? see [manual](manual.html)
 
 ---
 &copy;2016 All rights reserved. Made with [Pandoc](http://pandoc.org) and ♥
