@@ -17,7 +17,7 @@ function pandoc(
     template::Union{AbstractString,Void}=nothing
     )
     iname = match(r"(.*).md",filename).captures[1]
-    
+
     @show filename
     @show iname
 

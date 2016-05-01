@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>Julia中文社区</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Julia中文社区</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="section" class="slide level1">
+<h1></h1>
+<p>Julia中文社区是一个致力于为Julia中文用户提供中文支持的开源社区。随着Julia语言的中文用户越来越多，我们社区的志愿者也越来越多。</p>
+<p>首先，要感谢来自各个不同地区，不同背景的Julia中文社区志愿者，赞助商（其实是一直都很热心于中文社区建设的Haplox公司CTO陈实富先生,郭兰亭先生），以及特别要感谢来自中科院软件所的张常有老师一直以来对社区活动的支持。 。</p>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<p>在此也要感谢一直参与社区建设，文档翻译等工作的各位志愿者，我们社区现在维护或者正在建设以下的一些项目：</p>
+<ul>
+<li>Julia中文文档</li>
+<li>中文社区主页 <a href="http://julialang.cn">julialang.cn</a></li>
+<li>Julia中文社区论坛<a href="http://julia.org.cn">julia.org.cn</a></li>
+<li>JuliaCh.jl 简体中文版的Julia程序包博物馆</li>
+<li>JetAlpha.jl Julia文档查询机器人(暂时需要使用pubu.im)</li>
+</ul>
+</section>
+<section id="最后也欢迎更多的julian参与到我们社区的活动和建设中来" class="slide level1">
+<h1>最后也欢迎更多的Julian参与到我们社区的活动和建设中来</h1>
+</section>
+<section id="鼓掌" class="slide level1">
+<h1>鼓掌～</h1>
+<!-- ---
+
+# The Chinese Julia Community
+
+The Chinese Julia Community is an community aims to provide Julia users with
+
+# Introduction
+
+# The Chinese Julia Community has been growing rapidly since last year -->
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

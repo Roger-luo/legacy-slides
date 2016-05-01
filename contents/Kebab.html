@@ -11,23 +11,41 @@
   <link rel="stylesheet" href="../css/reveal.css"/>
     <style type="text/css">code{white-space: pre;}</style>
     <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     </style>
     <link rel="stylesheet" href="../css/theme/black.css" id="theme">
 
@@ -146,7 +164,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <section id="exact-cover-problem" class="slide level1">
 <h1>Exact Cover Problem</h1>
 <p>The Exact Cover problem is about a sequence of clause for n-bits</p>
-<p><br /><span class="math"><em>C</em><sub>1</sub> ∧ <em>C</em><sub>2</sub> ∧ …<em>C</em><sub><em>M</em></sub></span><br /></p>
+<p><br /><span class="math display"><em>C</em><sub>1</sub> ∧ <em>C</em><sub>2</sub> ∧ …<em>C</em><sub><em>M</em></sub></span><br /></p>
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
@@ -157,30 +175,30 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section>
 <section id="section-7" class="slide level1">
 <h1></h1>
-<p>First a Hamiltonian can be constructed as following: <br /><span class="math"><em>H</em>(<em>s</em>) = (1 − <em>s</em>)<em>H</em><sub><em>B</em></sub> + <em>s</em> ⋅ <em>H</em><sub><em>P</em></sub> 0 ≤ <em>s</em> ≤ 1</span><br /></p>
+<p>First a Hamiltonian can be constructed as following: <br /><span class="math display"><em>H</em>(<em>s</em>)=(1 − <em>s</em>)<em>H</em><sub><em>B</em></sub> + <em>s</em> ⋅ <em>H</em><sub><em>P</em></sub> 0 ≤ <em>s</em> ≤ 1</span><br /></p>
 </section>
 <section id="section-8" class="slide level1">
 <h1></h1>
-<p>where, <br /><span class="math">$$
+<p>where, <br /><span class="math display">$$
 H_B^{(i)} = \frac{1}{2}(1-\sigma_{x}^{(i)})\quad with\quad \sigma_x^{(i)}=\begin{pmatrix}
 0 &amp; 1\\
 1 &amp; 0
 \end{pmatrix}
 $$</span><br /></p>
-<p><br /><span class="math"><em>H</em><sub><em>B</em></sub> = ∑<em>H</em><sub><em>B</em></sub><sup>(<em>i</em>)</sup></span><br /></p>
+<p><br /><span class="math display"><em>H</em><sub><em>B</em></sub> = ∑<em>H</em><sub><em>B</em></sub><sup>(<em>i</em>)</sup></span><br /></p>
 </section>
 <section id="section-9" class="slide level1">
 <h1></h1>
-<p><br /><span class="math"><em>H</em><sub><em>P</em>, <em>C</em></sub>(|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩) = <em>h</em><sub><em>C</em></sub>(<em>z</em><sub><em>i</em><em>C</em></sub>, <em>z</em><sub><em>j</em><em>C</em></sub>, <em>z</em><sub><em>k</em><em>C</em></sub>)|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩</span><br /></p>
+<p><br /><span class="math display"><em>H</em><sub><em>P</em>, <em>C</em></sub>(|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩) = <em>h</em><sub><em>C</em></sub>(<em>z</em><sub><em>i</em><em>C</em></sub>, <em>z</em><sub><em>j</em><em>C</em></sub>, <em>z</em><sub><em>k</em><em>C</em></sub>)|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩</span><br /></p>
 </section>
 <section id="cost-function" class="slide level1">
 <h1>Cost Function</h1>
-<p>The function <span class="math"><em>h</em><sub><em>C</em></sub></span> is called cost function</p>
+<p>The function <span class="math inline"><em>h</em><sub><em>C</em></sub></span> is called cost function</p>
 </section>
 <section id="section-10" class="slide level1">
 <h1></h1>
 <p>for example,</p>
-<p><br /><span class="math">$$
+<p><br /><span class="math display">$$
 h_C = \begin{cases}
 0 \quad \text{if the clause is satisfied}\\
 1 \quad \text{if the clause is violated}
@@ -200,21 +218,21 @@ $$</span><br /></p>
 </section>
 <section id="section-12" class="slide level1">
 <h1></h1>
-<p>take s as t/T,where t is the current time and T is the evolution time. <br /><span class="math"><em>H</em> = (1 − <em>t</em>/<em>T</em>)<em>H</em><sub><em>B</em></sub> + <em>t</em>/<em>T</em> ⋅ <em>H</em><sub><em>P</em></sub></span><br /></p>
+<p>take s as t/T,where t is the current time and T is the evolution time. <br /><span class="math display"><em>H</em> = (1 − <em>t</em>/<em>T</em>)<em>H</em><sub><em>B</em></sub> + <em>t</em>/<em>T</em> ⋅ <em>H</em><sub><em>P</em></sub></span><br /></p>
 </section>
 <section id="at-the-begining" class="slide level1">
 <h1>At the begining</h1>
 </section>
 <section id="section-13" class="slide level1">
 <h1></h1>
-<p>H is actually <span class="math"><em>H</em><sub><em>B</em></sub></span>,and the ground state of <span class="math"><em>H</em><sub><em>B</em></sub></span> is designed to Bell state.</p>
+<p>H is actually <span class="math inline"><em>H</em><sub><em>B</em></sub></span>,and the ground state of <span class="math inline"><em>H</em><sub><em>B</em></sub></span> is designed to Bell state.</p>
 </section>
 <section id="arrives-the-final" class="slide level1">
 <h1>Arrives the final</h1>
 </section>
 <section id="section-14" class="slide level1">
 <h1></h1>
-<p>H becomes <span class="math"><em>H</em><sub><em>P</em></sub></span>, and we get the ground state of <span class="math"><em>H</em><sub><em>P</em></sub></span>, which is the answer to a given problem.Even the problem does not actually have an answer, the algorithm can find the best-match answer.</p>
+<p>H becomes <span class="math inline"><em>H</em><sub><em>P</em></sub></span>, and we get the ground state of <span class="math inline"><em>H</em><sub><em>P</em></sub></span>, which is the answer to a given problem.Even the problem does not actually have an answer, the algorithm can find the best-match answer.</p>
 </section>
 <section id="section-15" class="slide level1">
 <h1></h1>
@@ -228,13 +246,13 @@ $$</span><br /></p>
 </section>
 <section id="section-16" class="slide level1">
 <h1></h1>
-<pre class="sourceCode julia"><code class="sourceCode julia">H = AdiaSystem([TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]),
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">H = AdiaSystem([TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]),
     TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>]),
     TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]),
     TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>]),
     TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">6</span>]),
     TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">6</span>]), 
-    ],<span class="fl">7</span>,<span class="fl">1e3</span>)</code></pre>
+    ],<span class="fl">7</span>,<span class="fl">1e3</span>)</code></pre></div>
 </section>
 <section id="operate-the-adiabatic-evolution" class="slide level1">
 <h1>Operate the Adiabatic Evolution</h1>
@@ -308,7 +326,7 @@ $$</span><br /></p>
 <section id="section-27" class="slide level1">
 <h1></h1>
 <p>some commonly used gates have already have wrappers,eg.</p>
-<pre class="sourceCode julia"><code class="sourceCode julia"><span class="co">#Hadamard gate</span>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co">#Hadamard gate</span>
 <span class="kw">function</span> Hadamard(state::<span class="dt">AbstractVector</span>,ID::<span class="dt">Integer</span>)
 
 <span class="co">#Controled R_k gate</span>
@@ -316,7 +334,7 @@ $$</span><br /></p>
     state::<span class="dt">AbstractVector</span>,
     CID::<span class="dt">Integer</span>,UCID::<span class="dt">Integer</span>,
     k::<span class="dt">Integer</span>
-    )</code></pre>
+    )</code></pre></div>
 </section>
 <section id="section-28" class="slide level1">
 <h1></h1>
@@ -327,7 +345,7 @@ $$</span><br /></p>
 </section>
 <section id="section-29" class="slide level1">
 <h1></h1>
-<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> SingleQubitQFT!(state::<span class="dt">AbstractVector</span>,bitID::<span class="dt">Integer</span>)
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> SingleQubitQFT!(state::<span class="dt">AbstractVector</span>,bitID::<span class="dt">Integer</span>)
     state_len = length(state)
     bit_num = <span class="dt">Int</span>(log2(state_len))
 
@@ -338,11 +356,11 @@ $$</span><br /></p>
         copy!(state,C_R_k(state,bitID-i,bitID,i))
     <span class="kw">end</span>
     <span class="kw">return</span> state
-<span class="kw">end</span></code></pre>
+<span class="kw">end</span></code></pre></div>
 </section>
 <section id="for-every-bit" class="slide level1">
 <h1>For every bit</h1>
-<pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> QFT!(state::<span class="dt">AbstractVector</span>)
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> QFT!(state::<span class="dt">AbstractVector</span>)
     state_len = length(state)
     bit_num = <span class="dt">Int</span>(log2(state_len))
 
@@ -352,7 +370,7 @@ $$</span><br /></p>
         i-=<span class="fl">1</span>
     <span class="kw">end</span>
     <span class="kw">return</span> state
-<span class="kw">end</span></code></pre>
+<span class="kw">end</span></code></pre></div>
 </section>
 <section id="kebab-is-opensource" class="slide level1">
 <h1>Kebab is OpenSource!</h1>

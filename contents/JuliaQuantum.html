@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>JuliaQuantum</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">JuliaQuantum</h1>
+  <h1 class="subtitle">towards the age of quantum information</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="a-brief-intro-for-juliaquantum" class="slide level1">
+<h1>A brief intro for JuliaQuantum</h1>
+</section>
+<section class="slide level1">
+
+<p>JuliaQuantum is an Julia umbrella organization to build libraries in Julia for quantum science and technology. The organization aims to provide people advanced high performance libraries in Julia language.</p>
+</section>
+<section id="why-julia" class="slide level1" data-background="#DAA520">
+<h1>Why Julia?</h1>
+<p>Julia is a fast dynamic programming language designed for high performance and its multiple-dispatch feature.</p>
+</section>
+<section id="why-julia" class="slide level1" data-background="#DAA520">
+<h1></h1>
+<p>I would like to quote a short description from ForwardDiff.jl</p>
+</section>
+<section id="section" class="slide level1" data-background="#DAA520">
+<h1></h1>
+<blockquote>
+<p>Unlike many other languages, Julia’s type-based operator overloading is fast and natural, and one of the central design tenets of the langauge. This is because Julia is a dynamic, JIT-compiled language - the compiled bytecode of a Julia function is tied directly to the types with which the function is called, so the compiler can optimize every Julia method for the specific input type at runtime.</p>
+</blockquote>
+</section>
+<section id="section-1" class="slide level1" data-background="#DAA520">
+<h1></h1>
+<h4 id="for-scientists">For Scientists</h4>
+<p>High performance is important, however, as the complexity of problems grows rapidly , a programming language designed for high efficiency is also necessary. And we would not like to be cautious of pointers, type declarations and other trifles, we hope we can</p>
+</section>
+<section id="focus-on-our-problems" class="slide level1" data-background="#DAA520">
+<h1>Focus on our problems</h1>
+</section>
+<section class="slide level1">
+
+<p>The language design of Julia makes it much more convenient for scientists in calculating their problems and sharing ideas. eg. Thanks to the unicode support, you could type equations in a more natural way.</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; exp(im*π)
+-1</code></pre></div>
+</section>
+<section class="slide level1">
+
+<p>And as I said, no need for type declarations if you do not want it.</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; x=π
+π = 3.1415926535897...</code></pre></div>
+</section>
+<section id="projects-in-juliaquantum" class="slide level1">
+<h1>Projects in JuliaQuantum</h1>
+<ul>
+<li class="fragment">QuDynamics.jl</li>
+<li class="fragment">QuDirac.jl</li>
+<li class="fragment">QuBase.jl</li>
+<li class="fragment">QuCmp.jl</li>
+</ul>
+</section>
+<section id="use-julia-in-quantum-science" class="slide level1" data-background="#6B8E23">
+<h1>Use Julia in quantum science</h1>
+</section>
+<section id="case-1-adiaroll.jl" class="slide level1" data-background="#6B8E23">
+<h1>Case 1: AdiaRoll.jl</h1>
+<p>This is a simple adiabatic computing simulator in Julia. And it became a part of QuCmp.jl later.</p>
+</section>
+<section id="a-brief-intro-to-quantum-computing" class="slide level1" data-background="#6B8E23">
+<h1>A brief intro to quantum computing</h1>
+</section>
+<section id="section-2" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>The world of quantum is usually amazing and strange. One of the most important feature in quantum mechanics is the so-called <strong>entanglement</strong>.</p>
+</section>
+<section id="but-what-is-entanglement" class="slide level1" data-background="#6B8E23">
+<h1>But what is entanglement?</h1>
+<p>In a quantum computer, an example of entanglement is like:</p>
+<p>There are two bits <span class="math inline">|0⟩</span> and <span class="math inline">|0⟩</span>, and somehow, they have a kind of connection, so when the first bit changes from <span class="math inline">|1⟩</span>, the second bit will become <span class="math inline">|1⟩</span>, too.</p>
+</section>
+<section id="section-3" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>In quantum machanics, we write it in this way:</p>
+<p><br /><span class="math display">$$
+|\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle|0\rangle-|1\rangle |1\rangle)
+$$</span><br /></p>
+<p>Here, the square of parameters before the states represents the possibility of each state. Because this kind of bits is quite different from normal ones, we call them the qubits.</p>
+</section>
+<section id="section-4" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>However, it could be quite inconvenient to describe them in this way, what if we represent them in matrixes and vectors?</p>
+</section>
+<section id="section-5" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>and we could represent the state in this way via quantum mechanics:</p>
+<p><br /><span class="math display">$$
+\begin{pmatrix}
+\frac{1}{\sqrt{2}}\\
+0\\
+0\\
+-\frac{1}{\sqrt{2}}\\
+\end{pmatrix}
+\begin{matrix}
+|00\rangle\\
+|01\rangle\\
+|10\rangle\\
+|11\rangle
+\end{matrix}
+$$</span><br /></p>
+</section>
+<section id="section-6" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<h4 id="as-qubits-is-represented-by-vectors-we-could-use-matrix-to-describe-the-operations-on-qubits-eg.-this-operation-flips-the-qubits-above">As qubits is represented by vectors, we could use matrix to describe the operations on qubits, eg. this operation flips the qubits above</h4>
+<p><br /><span class="math display">$$
+\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\frac{1}{\sqrt{2}}\\
+0\\
+0\\
+-\frac{1}{\sqrt{2}}\\
+\end{pmatrix} =
+\begin{pmatrix}
+-\frac{1}{\sqrt{2}}\\
+0\\
+0\\
+\frac{1}{\sqrt{2}}\\
+\end{pmatrix}
+$$</span><br /></p>
+</section>
+<section id="section-7" class="slide level1" data-background="#6B8E23">
+<h1></h1>
+<p>Furthermore, all the states obeys the Schrödinger equation:</p>
+<p><br /><span class="math display">$$
+i\frac{d}{dt} |\psi(t)\rangle = H(t) |\psi(t)\rangle
+$$</span><br /></p>
+</section>
+<section id="adiabatic-computing" class="slide level1">
+<h1>Adiabatic computing</h1>
+<p>Adiabatic computing is a quite different way in quantum computing models. According to the adiabatic theorm, if the evolution is slow enough,the ground state can be kept during the evolution.</p>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<p>The ground state has the smallest eigen value, as:</p>
+<p><br /><span class="math display"><em>H</em>|ground state⟩=<em>E</em><sub>0</sub>|ground state⟩</span><br /></p>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<p>Therefore, we could encode our questions to qubits' eigen value</p>
+</section>
+<section id="exact-cover-problem" class="slide level1">
+<h1>Exact Cover Problem</h1>
+<p>The Exact Cover problem is about a sequence of clause for n-bits</p>
+<p><br /><span class="math display"><em>C</em><sub>1</sub> ∧ <em>C</em><sub>2</sub> ∧ …<em>C</em><sub><em>M</em></sub></span><br /></p>
+</section>
+<section class="slide level1">
+
+<p>each clauses involves 3 bits,and the question is what kind of value can these n bits satisfy this sequence of clause?</p>
+</section>
+<section id="section-10" class="slide level1">
+<h1></h1>
+<p>First a Hamiltonian can be constructed as following: <br /><span class="math display"><em>H</em>(<em>s</em>)=(1 − <em>s</em>)<em>H</em><sub><em>B</em></sub> + <em>s</em> ⋅ <em>H</em><sub><em>P</em></sub> 0 ≤ <em>s</em> ≤ 1</span><br /></p>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<p>where, <br /><span class="math display">$$
+H_B^{(i)} = \frac{1}{2}(1-\sigma_{x}^{(i)})\quad with\quad \sigma_x^{(i)}=\begin{pmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{pmatrix}
+$$</span><br /></p>
+<p><br /><span class="math display"><em>H</em><sub><em>B</em></sub> = ∑<em>H</em><sub><em>B</em></sub><sup>(<em>i</em>)</sup></span><br /></p>
+</section>
+<section id="section-12" class="slide level1">
+<h1></h1>
+<p><br /><span class="math display"><em>H</em><sub><em>P</em>, <em>C</em></sub>(|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩) = <em>h</em><sub><em>C</em></sub>(<em>z</em><sub><em>i</em><em>C</em></sub>, <em>z</em><sub><em>j</em><em>C</em></sub>, <em>z</em><sub><em>k</em><em>C</em></sub>)|<em>z</em><sub>1</sub>⟩|<em>z</em><sub>2</sub>⟩⋯|<em>z</em><sub><em>n</em></sub>⟩</span><br /></p>
+</section>
+<section id="cost-function" class="slide level1">
+<h1>Cost Function</h1>
+<p>The function <span class="math inline"><em>h</em><sub><em>C</em></sub></span> is called cost function</p>
+<p>for example,</p>
+<p><br /><span class="math display">$$
+h_C = \begin{cases}
+0 \quad \text{if the clause is satisfied}\\
+1 \quad \text{if the clause is violated}
+\end{cases}
+$$</span><br /></p>
+</section>
+<section id="back-to-our-hamiltonian-again" class="slide level1">
+<h1>Back to our Hamiltonian Again</h1>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<p>take s as t/T,where t is the current time and T is the evolution time. <br /><span class="math display"><em>H</em> = (1 − <em>t</em>/<em>T</em>)<em>H</em><sub><em>B</em></sub> + <em>t</em>/<em>T</em> ⋅ <em>H</em><sub><em>P</em></sub></span><br /></p>
+</section>
+<section id="at-the-begining" class="slide level1">
+<h1>At the begining</h1>
+</section>
+<section id="section-14" class="slide level1">
+<h1></h1>
+<p>H is actually <span class="math inline"><em>H</em><sub><em>B</em></sub></span>,and the ground state of <span class="math inline"><em>H</em><sub><em>B</em></sub></span> is designed to Bell state.</p>
+</section>
+<section id="arrives-the-final" class="slide level1">
+<h1>Arrives the final</h1>
+</section>
+<section id="section-15" class="slide level1">
+<h1></h1>
+<p>H becomes <span class="math inline"><em>H</em><sub><em>P</em></sub></span>, and we get the ground state of <span class="math inline"><em>H</em><sub><em>P</em></sub></span>, which is the answer to a given problem.Even the problem does not actually have an answer, the algorithm can find the best-match answer.</p>
+</section>
+<section class="slide level1">
+
+<p>And I developed this package: AdiaRoll.jl, using the Julia language</p>
+</section>
+<section class="slide level1">
+
+<p>this interface for adiabatic computing is provided as by both Hamiltonian and truth-table for some specific problems.</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">using AdiaRoll
+
+eigen,state,p = evolution(
+    <span class="fl">1e4</span>,
+    [TruthTable(0b10010111,[1,2,3]),
+    TruthTable(0b10010111,[2,3,4]),
+    TruthTable(0b10010111,[3,4,5]),
+    TruthTable(0b10010111,[5,6,7]),
+    TruthTable(0b10010111,[1,5,6]),
+    TruthTable(0b10010111,[2,3,6]),
+    ],7)</code></pre></div>
+<p>And the evolution function will finish the evolution for computing</p>
+</section>
+<section class="slide level1">
+
+<p>In QuCmp, the adiabatic parts' APIs is more flexible and easy to use. As the computing process is actually a time-evolution operator.</p>
+</section>
+<section class="slide level1">
+
+<p>As I introduced in previous slides, there is a lot of matrix operations in this adiabtatic computing. However, with the BLAS support in Julia, matrixes can be used in a much cleaner form with high perfomance.</p>
+</section>
+<section class="slide level1">
+
+<p>And use PyPlot.jl to plot the result</p>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="../img/3EC-7bit.png" />
+</figure>
+</section>
+<section id="case-2-noodles.jl-for-bohmian-mechanics" class="slide level1">
+<h1>Case 2: Noodles.jl for Bohmian mechanics</h1>
+</section>
+<section id="a-brief-intro" class="slide level1">
+<h1>A brief intro</h1>
+</section>
+<section class="slide level1">
+
+<h4 id="bohmian-mechanics">Bohmian mechanics</h4>
+<p>There has been a lot explaination for quantum mechanics, and bohmian mechanics is one of them.</p>
+<p>According to quantum mechanics, the state of a particle could be described by a wave function <span class="math inline"><em>ϕ</em></span>, and it do not have such a concept of trajectories. However, in bohmian mechanics, we do have a concept of physical trajectories.</p>
+</section>
+<section class="slide level1">
+
+<p>After some mathematical calculations, the speed of a particle should be:</p>
+<p><br /><span class="math display">$$
+V = \frac{\hbar}{m}\frac{\phi^{*}\nabla \phi}{|\phi|^2}
+$$</span><br /></p>
+</section>
+<section class="slide level1">
+
+<p>In noodles.jl, I offered a solution for drawing particles' trajectories in a velocity field by PyPlot.jl</p>
+<p>And the velocity data should be stored in a matrix/tensor whose element should be the velocity at certain grid.</p>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="../img/3Slits.png" />
+</figure>
+</section>
+<section id="on-going-project" class="slide level1">
+<h1>On-going project</h1>
+</section>
+<section id="qucmp.jl" class="slide level1">
+<h1>QuCmp.jl</h1>
+</section>
+<section id="section-16" class="slide level1">
+<h1></h1>
+<p>QuCmp.jl is a framework for simulations for quantum circuits, one-way and adiabatic quantum computing. And furthermore, after the basic framework is done, we would build quantum compiler and circuit CAD toolkit for the open-source community. As I mentioned it is open source. The license is in MIT license.</p>
+</section>
+<section id="structure-design" class="slide level1">
+<h1>Structure design</h1>
+<figure>
+<img src="../img/structure.png" />
+</figure>
+</section>
+<section id="explanation-for-each-layer" class="slide level1">
+<h1>Explanation for each layer</h1>
+<ul>
+<li class="fragment"><strong>1st layer</strong> provides the other layers the basic simulation environment for quantum computation</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<ul>
+<li><strong>2nd layer</strong> is based on the 1st layer can applies basic operations on a simulated quantum computer
+<ul>
+<li><strong>Built-in Algorithms</strong> provides efficient implementation for commonly used algorithms, eg. quantum fourier transformation</li>
+<li><strong>Circuit CAD toolkit</strong> provides a user-friendly way to construct quantum circuits and test their outputs</li>
+<li><strong>Compiler</strong> ,the most complex part in this layer, provides optimizations for circuits and compile the quantum programming languages to circuit's APIs(instructions) of the 1st layer</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<ul>
+<li><strong>3rd layer</strong> is for quantum programming languages, such as Quipper and LIQUi&gt; or developers can design their own languages and part of the compiler based on the simulated environment provided by 1st and 2nd layer.</li>
+</ul>
+</section>
+<section id="type-structure" class="slide level1">
+<h1>Type Structure</h1>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="../img/typestructure.png" />
+</figure>
+</section>
+<section class="slide level1">
+
+<h3 id="design">Design :</h3>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">abstract AbstractModels
+abstract QuCircuit&lt;:AbstractModels
+abstract Adiabatic&lt;:AbstractModels
+abstract Oneway &lt;:AbstractModels
+
+abstract AbstractOp{N}
+abstract TimeOp{N}&lt;:AbstractOp{N}
+abstract Clifford&lt;:AbstractOp{1}</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">type QuBit #or AbstractVector
+    state::AbstractVector
+    bitnum::Integer
+
+    function QuBit(state::AbstractVector,bitnum::Integer)
+        check_state(state) #check if state length meets bitnum
+        new(state,bitnum)
+    end
+end</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">## A graph state is stored by an adjacent matrix
+type GraphState&lt;:Oneway
+    adjaMatrix::AbstractMatrix
+end
+
+## or a group of stabilizer
+type stabilizer&lt;:GraphState
+    vertexA::Integer
+    vertexB::Integer
+end</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">immutable Gate{T}&lt;:QuCircuit
+    name::AbstractString
+    op::T
+    bitnum::Integer
+
+    Gate(name::AbstractString,op::T,n::<span class="dt">Integer</span>)=new(name,op,n)
+end</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">type GateUnit{T}&lt;:QuCircuit
+    control_bit::AbstractVector
+    realated_bit:AbstractVector
+    gate::Gate{T}
+    time_layer::Integer
+end
+
+typealias Gates AbstractVector{GateUnit}
+
+type Circuit&lt;:QuCircuit
+    gates::Gates
+    bit_num::Integer
+end</code></pre></div>
+</section>
+<section id="prototypes" class="slide level1">
+<h1>Prototypes</h1>
+</section>
+<section class="slide level1">
+
+<p>Prototype 1: Simple Quantum Circuits</p>
+</section>
+<section class="slide level1">
+
+<h2 id="construct-a-circuit">Construct a circuit</h2>
+<p>a circuit is constructed by <code>Circuit</code>:</p>
+<p>you can construct an empty circuit:</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">circuit = Circuit()</code></pre></div>
+</section>
+<section class="slide level1">
+
+<p>to add gates, use the method <code>addgate!</code></p>
+<p>the <code>addgate!</code> method allows following way to add a quantum gate or a module to a specific place in the circuit.</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"># for single qubit gates(like Hadamard)
+# circuit : the circuit object
+# gate : gate object you want to insert
+# id   : the id of the qubit you want to add this gate to
+addgate!(circuit,gate,id,time_layer)</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"># for example
+# |a&gt; ----[H]----
+# |b&gt; -----------
+# |c&gt; -----------
+# let&#39;s add a Hadamard gate to the first qubit in this three-qubit circuit
+
+# first create your circuit
+c = Circuit()
+addgate!(c,Hadamard,1,1)</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"># for controlled gates
+# |a&gt; -----x--------
+#          |
+# |b&gt; ----[H]-------
+# |c&gt; --------------
+
+c_H = Circuit()
+addgate!(c_H, 1, Hadamard, 2, 1)</code></pre></div>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># or for multiple input gates(will be useful for other gate-like modules)</span>
+
+# |a&gt; --------x------
+#             |
+# |b&gt; ------|***|----
+#           | M |
+# |c&gt; ------|***|----
+c_M = Circuit()
+addgate!(c_M, 1, M, [2, 3], 1)
+
+# or for multiple controlled gates</span>
+
+# |a&gt; -------x--------
+#            |
+# |b&gt; -------x--------
+#            |
+# |c&gt; ------[H]-------
+cc_H = Circuit()
+addgate!(cc_H, [1,2], Hadamard, 3)</code></pre></div>
+</section>
+<section class="slide level1">
+
+<p>to measure a circuit, simply use the <code>measure</code> method on the circuit you want to measure with the the circuit's input state</p>
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"># measure the circuit:
+# |a&gt; ----[H]----
+# |b&gt; -----------
+# |c&gt; -----------
+# with input state:
+# 1/2*sqrt(2)(|000&gt;+|001&gt;+|010&gt;+...+|111&gt;)
+
+input_state = InitState(3)
+circuit = Circuit()
+addgate!(circuit, Hadamard, 1, 1)
+res_state = measure(circuit,input_state)</code></pre></div>
+</section>
+<section class="slide level1">
+
+<p>Prototype 2: quantum Fourier Transformation</p>
+<p><a href="https://en.wikipedia.org/wiki/Quantum_Fourier_transform">wiki</a></p>
+</section>
+<section class="slide level1">
+
+<p><a href="http://journal.frontiersin.org/article/10.3389/fphy.2014.00044/full">implementation in adiabatic computational model</a></p>
+<figure>
+<img src="../img/fourier.svg" alt="QFT circuit pic" /><figcaption>QFT circuit pic</figcaption>
+</figure>
+</section>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># Quantum Fourier Transformation</span>
+init_state = InitStates(<span class="fl">4</span>)<span class="co"># inputs the number of bits</span>
+
+QFT_curcuit = Circuit()
+
+for i=1:4
+    addgate!(QFT_circuit,Hadamard,i)
+    for j=1:i-1
+        addgate!(QFT_circuit,bitID-i,R_k(i),1)
+    end
+end</code></pre></div>
+</section>
+<section class="slide level1">
+
+<pre><code>res_state = measure(QFT_circuit,init_state)
+# suppose this to be the command line(the result is made up)
+---
+measurement of QFT_circuit:
+states| prob
+|0000&gt;: 0.0001
+|0001&gt;: 0.2000
+...
+|1111&gt;: 0.2000
+---
+
+figure(1)
+# For visualization, a circuit should be plotted by
+plot(QFT_circuit)
+show()</code></pre>
+</section>
+<section class="slide level1">
+
+<p>If you are interested in quantum computing or you are interested in my projects, you could follow me(<a href="http://github.com/Roger-luo">@Roger-luo</a>) on github</p>
+</section>
+<section class="slide level1">
+
+<p>Thanks!</p>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

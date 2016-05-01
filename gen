@@ -6,6 +6,6 @@ for mdfile in `ls _contents`; do
     pandoc "_contents/$mdfile" -o "contents/${mdfile%.md}.html" -t revealjs -s --template=slide.revealjs
 done
 
-git add *
-git commit -m"update contents $1"
-git push origin gh-pages
+# git add *
+# git commit -m"update contents $1"
+# git push origin gh-pages
