@@ -10,7 +10,9 @@
 
 ### Julia User Meetup Slides
 - [SFD2015 slides](contents/JuliaSFD2015.html)
-- [2016 meetup@Shenzhen]
+- 2016 meetup@Shenzhen
+    - [The Chinese Julia Community](contents/JuliaCN.html)
+    - [Use Julia in Quantum Science](contents/JuliaQuantum.html)
 
 
 ---
