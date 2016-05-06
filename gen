@@ -3,7 +3,7 @@
 pandoc README.md -o index.html --toc --toc-depth=2 --template=index.revealjs
 
 for mdfile in `ls _contents`; do
-    pandoc "_contents/$mdfile" -o "contents/${mdfile%.md}.html" -t revealjs -s --template=slide.revealjs
+    pandoc "_contents/$mdfile" -o "contents/${mdfile%.md}.html" -t revealjs -s --template=slide.revealjs --no-highlight
 done
 
 # git add *

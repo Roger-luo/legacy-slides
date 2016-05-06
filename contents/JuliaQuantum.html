@@ -10,43 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="../css/reveal.css"/>
     <style type="text/css">code{white-space: pre;}</style>
-    <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    </style>
     <link rel="stylesheet" href="../css/theme/black.css" id="theme">
 
     <!-- Code syntax highlighting -->
@@ -128,14 +91,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section class="slide level1">
 
 <p>The language design of Julia makes it much more convenient for scientists in calculating their problems and sharing ideas. eg. Thanks to the unicode support, you could type equations in a more natural way.</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; exp(im*π)
--<span class="fl">1</span></code></pre></div>
+<pre class="julia"><code>julia&gt; exp(im*π)
+-1</code></pre>
 </section>
 <section class="slide level1">
 
 <p>And as I said, no need for type declarations if you do not want it.</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; x=π
-π = <span class="fl">3.1415926535897</span>...</code></pre></div>
+<pre class="julia"><code>julia&gt; x=π
+π = 3.1415926535897...</code></pre>
 </section>
 <section id="projects-in-juliaquantum" class="slide level1">
 <h1>Projects in JuliaQuantum</h1>
@@ -306,17 +269,17 @@ $$</span><br /></p>
 <section class="slide level1">
 
 <p>this interface for adiabatic computing is provided as by both Hamiltonian and truth-table for some specific problems.</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">using AdiaRoll
+<pre class="julia"><code>using AdiaRoll
 
 eigen,state,p = evolution(
-    <span class="fl">1e4</span>,
-    [TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">6</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">6</span>]),
-    ],<span class="fl">7</span>)</code></pre></div>
+    1e4,
+    [TruthTable(0b10010111,[1,2,3]),
+    TruthTable(0b10010111,[2,3,4]),
+    TruthTable(0b10010111,[3,4,5]),
+    TruthTable(0b10010111,[5,6,7]),
+    TruthTable(0b10010111,[1,5,6]),
+    TruthTable(0b10010111,[2,3,6]),
+    ],7)</code></pre>
 <p>And the evolution function will finish the evolution for computing</p>
 </section>
 <section class="slide level1">
@@ -418,65 +381,65 @@ $$</span><br /></p>
 <section class="slide level1">
 
 <h3 id="design">Design :</h3>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">abstract</span> AbstractModels
-<span class="kw">abstract</span> QuCircuit&lt;:AbstractModels
-<span class="kw">abstract</span> Adiabatic&lt;:AbstractModels
-<span class="kw">abstract</span> Oneway &lt;:AbstractModels
+<pre class="julia"><code>abstract AbstractModels
+abstract QuCircuit&lt;:AbstractModels
+abstract Adiabatic&lt;:AbstractModels
+abstract Oneway &lt;:AbstractModels
 
-<span class="kw">abstract</span> AbstractOp{N}
-<span class="kw">abstract</span> TimeOp{N}&lt;:AbstractOp{N}
-<span class="kw">abstract</span> Clifford&lt;:AbstractOp{<span class="fl">1</span>}</code></pre></div>
+abstract AbstractOp{N}
+abstract TimeOp{N}&lt;:AbstractOp{N}
+abstract Clifford&lt;:AbstractOp{1}</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">type</span> QuBit <span class="co">#or AbstractVector</span>
-    state::<span class="dt">AbstractVector</span>
-    bitnum::<span class="dt">Integer</span>
+<pre class="julia"><code>type QuBit #or AbstractVector
+    state::AbstractVector
+    bitnum::Integer
 
-    <span class="kw">function</span> QuBit(state::<span class="dt">AbstractVector</span>,bitnum::<span class="dt">Integer</span>)
-        check_state(state) <span class="co">#check if state length meets bitnum</span>
+    function QuBit(state::AbstractVector,bitnum::Integer)
+        check_state(state) #check if state length meets bitnum
         new(state,bitnum)
-    <span class="kw">end</span>
-<span class="kw">end</span></code></pre></div>
+    end
+end</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co">## A graph state is stored by an adjacent matrix</span>
-<span class="kw">type</span> GraphState&lt;:Oneway
-    adjaMatrix::<span class="dt">AbstractMatrix</span>
-<span class="kw">end</span>
+<pre class="julia"><code>## A graph state is stored by an adjacent matrix
+type GraphState&lt;:Oneway
+    adjaMatrix::AbstractMatrix
+end
 
-<span class="co">## or a group of stabilizer</span>
-<span class="kw">type</span> stabilizer&lt;:GraphState
-    vertexA::<span class="dt">Integer</span>
-    vertexB::<span class="dt">Integer</span>
-<span class="kw">end</span></code></pre></div>
+## or a group of stabilizer
+type stabilizer&lt;:GraphState
+    vertexA::Integer
+    vertexB::Integer
+end</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">immutable Gate{T}&lt;:QuCircuit
+<pre class="julia"><code>immutable Gate{T}&lt;:QuCircuit
     name::AbstractString
     op::T
-    bitnum::<span class="dt">Integer</span>
+    bitnum::Integer
 
-    Gate(name::AbstractString,op::T,n::<span class="dt">Integer</span>)=new(name,op,n)
-<span class="kw">end</span></code></pre></div>
+    Gate(name::AbstractString,op::T,n::Integer)=new(name,op,n)
+end</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">type</span> GateUnit{T}&lt;:QuCircuit
-    control_bit::<span class="dt">AbstractVector</span>
-    realated_bit:<span class="dt">AbstractVector</span>
+<pre class="julia"><code>type GateUnit{T}&lt;:QuCircuit
+    control_bit::AbstractVector
+    realated_bit:AbstractVector
     gate::Gate{T}
-    time_layer::<span class="dt">Integer</span>
-<span class="kw">end</span>
+    time_layer::Integer
+end
 
-<span class="kw">typealias</span> Gates <span class="dt">AbstractVector</span>{GateUnit}
+typealias Gates AbstractVector{GateUnit}
 
-<span class="kw">type</span> Circuit&lt;:QuCircuit
+type Circuit&lt;:QuCircuit
     gates::Gates
-    bit_num::<span class="dt">Integer</span>
-<span class="kw">end</span></code></pre></div>
+    bit_num::Integer
+end</code></pre>
 </section>
 <section id="prototypes" class="slide level1">
 <h1>Prototypes</h1>
@@ -490,77 +453,77 @@ $$</span><br /></p>
 <h2 id="construct-a-circuit">Construct a circuit</h2>
 <p>a circuit is constructed by <code>Circuit</code>:</p>
 <p>you can construct an empty circuit:</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">circuit = Circuit()</code></pre></div>
+<pre class="julia"><code>circuit = Circuit()</code></pre>
 </section>
 <section class="slide level1">
 
 <p>to add gates, use the method <code>addgate!</code></p>
 <p>the <code>addgate!</code> method allows following way to add a quantum gate or a module to a specific place in the circuit.</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># for single qubit gates(like Hadamard)</span>
-<span class="co"># circuit : the circuit object</span>
-<span class="co"># gate : gate object you want to insert</span>
-<span class="co"># id   : the id of the qubit you want to add this gate to</span>
-addgate!(circuit,gate,id,time_layer)</code></pre></div>
+<pre class="julia"><code># for single qubit gates(like Hadamard)
+# circuit : the circuit object
+# gate : gate object you want to insert
+# id   : the id of the qubit you want to add this gate to
+addgate!(circuit,gate,id,time_layer)</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># for example</span>
-<span class="co"># |a&gt; ----[H]----</span>
-<span class="co"># |b&gt; -----------</span>
-<span class="co"># |c&gt; -----------</span>
-<span class="co"># let&#39;s add a Hadamard gate to the first qubit in this three-qubit circuit</span>
+<pre class="julia"><code># for example
+# |a&gt; ----[H]----
+# |b&gt; -----------
+# |c&gt; -----------
+# let&#39;s add a Hadamard gate to the first qubit in this three-qubit circuit
 
-<span class="co"># first create your circuit</span>
+# first create your circuit
 c = Circuit()
-addgate!(c,Hadamard,<span class="fl">1</span>,<span class="fl">1</span>)</code></pre></div>
+addgate!(c,Hadamard,1,1)</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># for controlled gates</span>
-<span class="co"># |a&gt; -----x--------</span>
-<span class="co">#          |</span>
-<span class="co"># |b&gt; ----[H]-------</span>
-<span class="co"># |c&gt; --------------</span>
+<pre class="julia"><code># for controlled gates
+# |a&gt; -----x--------
+#          |
+# |b&gt; ----[H]-------
+# |c&gt; --------------
 
 c_H = Circuit()
-addgate!(c_H, <span class="fl">1</span>, Hadamard, <span class="fl">2</span>, <span class="fl">1</span>)</code></pre></div>
+addgate!(c_H, 1, Hadamard, 2, 1)</code></pre>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># or for multiple input gates(will be useful for other gate-like modules)</span>
+<pre class="julia"><code># or for multiple input gates(will be useful for other gate-like modules)
 
-<span class="co"># |a&gt; --------x------</span>
-<span class="co">#             |</span>
-<span class="co"># |b&gt; ------|***|----</span>
-<span class="co">#           | M |</span>
-<span class="co"># |c&gt; ------|***|----</span>
+# |a&gt; --------x------
+#             |
+# |b&gt; ------|***|----
+#           | M |
+# |c&gt; ------|***|----
 c_M = Circuit()
-addgate!(c_M, <span class="fl">1</span>, M, [<span class="fl">2</span>, <span class="fl">3</span>], <span class="fl">1</span>)
+addgate!(c_M, 1, M, [2, 3], 1)
 
-<span class="co"># or for multiple controlled gates</span>
+# or for multiple controlled gates
 
-<span class="co"># |a&gt; -------x--------</span>
-<span class="co">#            |</span>
-<span class="co"># |b&gt; -------x--------</span>
-<span class="co">#            |</span>
-<span class="co"># |c&gt; ------[H]-------</span>
+# |a&gt; -------x--------
+#            |
+# |b&gt; -------x--------
+#            |
+# |c&gt; ------[H]-------
 cc_H = Circuit()
-addgate!(cc_H, [<span class="fl">1</span>,<span class="fl">2</span>], Hadamard, <span class="fl">3</span>)</code></pre></div>
+addgate!(cc_H, [1,2], Hadamard, 3)</code></pre>
 </section>
 <section class="slide level1">
 
 <p>to measure a circuit, simply use the <code>measure</code> method on the circuit you want to measure with the the circuit's input state</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># measure the circuit:</span>
-<span class="co"># |a&gt; ----[H]----</span>
-<span class="co"># |b&gt; -----------</span>
-<span class="co"># |c&gt; -----------</span>
-<span class="co"># with input state:</span>
-<span class="co"># 1/2*sqrt(2)(|000&gt;+|001&gt;+|010&gt;+...+|111&gt;)</span>
+<pre class="julia"><code># measure the circuit:
+# |a&gt; ----[H]----
+# |b&gt; -----------
+# |c&gt; -----------
+# with input state:
+# 1/2*sqrt(2)(|000&gt;+|001&gt;+|010&gt;+...+|111&gt;)
 
-input_state = InitState(<span class="fl">3</span>)
+input_state = InitState(3)
 circuit = Circuit()
-addgate!(circuit, Hadamard, <span class="fl">1</span>, <span class="fl">1</span>)
-res_state = measure(circuit,input_state)</code></pre></div>
+addgate!(circuit, Hadamard, 1, 1)
+res_state = measure(circuit,input_state)</code></pre>
 </section>
 <section class="slide level1">
 
@@ -576,17 +539,17 @@ res_state = measure(circuit,input_state)</code></pre></div>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># Quantum Fourier Transformation</span>
-init_state = InitStates(<span class="fl">4</span>)<span class="co"># inputs the number of bits</span>
+<pre class="julia"><code># Quantum Fourier Transformation
+init_state = InitStates(4)# inputs the number of bits
 
 QFT_curcuit = Circuit()
 
-<span class="kw">for</span> i=<span class="fl">1</span>:<span class="fl">4</span>
+for i=1:4
     addgate!(QFT_circuit,Hadamard,i)
-    <span class="kw">for</span> j=<span class="fl">1</span>:i-<span class="fl">1</span>
-        addgate!(QFT_circuit,bitID-i,R_k(i),<span class="fl">1</span>)
-    <span class="kw">end</span>
-<span class="kw">end</span></code></pre></div>
+    for j=1:i-1
+        addgate!(QFT_circuit,bitID-i,R_k(i),1)
+    end
+end</code></pre>
 </section>
 <section class="slide level1">
 

@@ -10,43 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="../css/reveal.css"/>
     <style type="text/css">code{white-space: pre;}</style>
-    <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    </style>
     <link rel="stylesheet" href="../css/theme/black.css" id="theme">
 
     <!-- Code syntax highlighting -->
@@ -284,33 +247,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>Hello World!</h1>
 <p>从最基本的开始</p>
 <p>Julia可以直接在命令行中运行</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">julia</span> -e <span class="st">&#39;print(&quot;hello world!\n&quot;)&#39;</span></code></pre></div>
+<pre class="bash"><code>julia -e &#39;print(&quot;hello world!\n&quot;)&#39;</code></pre>
 <p>或者打开Julia的shell,输入</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">julia&gt;</span> print(<span class="st">&quot;hello world!\n&quot;</span>)</code></pre></div>
+<pre class="bash"><code>julia&gt; print(&quot;hello world!\n&quot;)</code></pre>
 <p>或者可以在一个脚本文件<code>hello.jl</code>中写入</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">print(<span class="st">&quot;hello world!</span>\n<span class="st">&quot;</span>)</code></pre></div>
+<pre class="julia"><code>print(&quot;hello world!\n&quot;)</code></pre>
 </section>
 <section id="变量-variables" class="slide level1">
 <h1>变量 Variables</h1>
 <p>Julia的变量不需要特别声明,变量类型会由值自动确定</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># 将10赋值给变量x</span>
-julia&gt; x=<span class="fl">10</span>
-<span class="fl">10</span>
-<span class="co"># 对变量x进行运算</span>
-julia&gt; x+<span class="fl">1</span>
-<span class="fl">11</span>
-<span class="co"># 重新给x赋值</span>
-julia&gt; x=<span class="fl">1</span>+<span class="fl">1</span>
-<span class="co"># 也可以给x赋其它类型的值</span>
-julia&gt; x=<span class="st">&quot;hello world!&quot;</span>
-hello world!</code></pre></div>
+<pre class="julia"><code># 将10赋值给变量x
+julia&gt; x=10
+10
+# 对变量x进行运算
+julia&gt; x+1
+11
+# 重新给x赋值
+julia&gt; x=1+1
+# 也可以给x赋其它类型的值
+julia&gt; x=&quot;hello world!&quot;
+hello world!</code></pre>
 </section>
 <section id="julia的变量名称支持unicode比如" class="slide level1">
 <h1>Julia的变量名称支持unicode比如</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; δ = <span class="fl">0.00001</span>
-<span class="fl">1.0e-5</span>
-julia&gt; 你好 = <span class="st">&quot;hello&quot;</span>
-hello</code></pre></div>
+<pre class="julia"><code>julia&gt; δ = 0.00001
+1.0e-5
+julia&gt; 你好 = &quot;hello&quot;
+hello</code></pre>
 </section>
 <section id="section-3" class="slide level1">
 <h1></h1>
@@ -319,13 +282,13 @@ hello</code></pre></div>
 <section id="section-4" class="slide level1">
 <h1></h1>
 <p>Julia有一些自带的常量,这些常量是允许重载的.比如</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; pi
-π = <span class="fl">3.1415926535897</span>...
-julia&gt; pi = <span class="fl">3</span>
-WARNING: imported binding <span class="kw">for</span> pi overwritten <span class="kw">in</span> <span class="kw">module</span> Main
-<span class="fl">3</span>
+<pre class="julia"><code>julia&gt; pi
+π = 3.1415926535897...
+julia&gt; pi = 3
+WARNING: imported binding for pi overwritten in module Main
+3
 julia&gt; π
-<span class="fl">3</span></code></pre></div>
+3</code></pre>
 </section>
 <section id="整数和浮点数" class="slide level1">
 <h1>整数和浮点数</h1>
@@ -341,8 +304,8 @@ julia&gt; π
 <section id="浮点数" class="slide level1">
 <h1>浮点数</h1>
 <p>浮点数的-0和-0在二进制表示下不一致(有符号位),但不影响大小比较</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">0.0</span> == -<span class="fl">0.0</span>
-true</code></pre></div>
+<pre class="julia"><code>julia&gt; 0.0 == -0.0
+true</code></pre>
 </section>
 <section id="浮点精度" class="slide level1">
 <h1>浮点精度</h1>
@@ -469,147 +432,147 @@ true</code></pre></div>
 <section id="复数" class="slide level1">
 <h1>复数</h1>
 <p>虚数单位是<code>im</code></p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">1</span>+<span class="fl">2im</span>
-<span class="fl">1</span> + <span class="fl">2im</span></code></pre></div>
+<pre class="julia"><code>julia&gt; 1+2im
+1 + 2im</code></pre>
 </section>
 <section id="section-6" class="slide level1">
 <h1></h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; real(<span class="fl">1</span>+<span class="fl">2im</span>)
-<span class="fl">1</span>
-julia&gt; imag(<span class="fl">1</span>+<span class="fl">2im</span>)
-<span class="fl">2</span>
-julia&gt; conj(<span class="fl">1</span>+<span class="fl">2im</span>)
-<span class="fl">1</span> - <span class="fl">2im</span>
-julia&gt; abs(<span class="fl">1</span>+<span class="fl">2im</span>)
-<span class="fl">2.23606797749979</span>
-julia&gt; angle(<span class="fl">1</span> + <span class="fl">2im</span>)
-<span class="fl">1.1071487177940904</span></code></pre></div>
+<pre class="julia"><code>julia&gt; real(1+2im)
+1
+julia&gt; imag(1+2im)
+2
+julia&gt; conj(1+2im)
+1 - 2im
+julia&gt; abs(1+2im)
+2.23606797749979
+julia&gt; angle(1 + 2im)
+1.1071487177940904</code></pre>
 </section>
 <section id="构造函数" class="slide level1">
 <h1>构造函数</h1>
 <p>虚数的构造函数是<code>complex</code></p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; complex(<span class="fl">1</span>,<span class="fl">2</span>)
-<span class="fl">1</span> + <span class="fl">2im</span></code></pre></div>
+<pre class="julia"><code>julia&gt; complex(1,2)
+1 + 2im</code></pre>
 </section>
 <section id="分数" class="slide level1">
 <h1>分数</h1>
 <p>分数线用<code>//</code>表示,比如<span class="math inline">$\frac{2}{3}$</span>在julia中写作<code>2//3</code>,所有的分数会自动化简为真分数,比如</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="fl">6</span>//<span class="fl">9</span>
-<span class="fl">2</span>//<span class="fl">3</span></code></pre></div>
+<pre class="julia"><code>julia&gt; 6//9
+2//3</code></pre>
 </section>
 <section id="字符串" class="slide level1">
 <h1>字符串</h1>
 <p>字符串存在一个数组中</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; str = <span class="st">&quot;Hello, world.</span>\n<span class="st">&quot;</span>
-<span class="st">&quot;Hello, world.</span>\n<span class="st">&quot;</span>
+<pre class="julia"><code>julia&gt; str = &quot;Hello, world.\n&quot;
+&quot;Hello, world.\n&quot;
 
-julia&gt; str[<span class="fl">1</span>]
-<span class="ch">&#39;H&#39;</span>
+julia&gt; str[1]
+&#39;H&#39;
 
-julia&gt; str[<span class="fl">6</span>]
-<span class="ch">&#39;,&#39;</span>
+julia&gt; str[6]
+&#39;,&#39;
 
-julia&gt; str[<span class="kw">end</span>]
-<span class="ch">&#39;\n&#39;</span></code></pre></div>
+julia&gt; str[end]
+&#39;\n&#39;</code></pre>
 </section>
 <section id="函数" class="slide level1">
 <h1>函数</h1>
 <p>函数声明如下</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> f(x,y)
-    <span class="kw">return</span> x+y
-<span class="kw">end</span></code></pre></div>
+<pre class="julia"><code>function f(x,y)
+    return x+y
+end</code></pre>
 <p><code>return</code> 关键会返回后面跟随的值,并退出函数</p>
 <p>julia支持多返回值,比如</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(x,y)
-    <span class="kw">return</span> x,y
-<span class="kw">end</span></code></pre></div>
+<pre class="julia"><code>function foo(x,y)
+    return x,y
+end</code></pre>
 </section>
 <section id="section-7" class="slide level1">
 <h1></h1>
 <p>将以tuple类型返回多个值</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>)
-(<span class="fl">1</span>,<span class="fl">2</span>)</code></pre></div>
+<pre class="julia"><code>julia&gt; foo(1,2)
+(1,2)</code></pre>
 </section>
 <section id="section-8" class="slide level1">
 <h1></h1>
 <p>函数也可以用这样简单的方式声明</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">f(x) = sqrt(x)+<span class="fl">1</span>
+<pre class="julia"><code>f(x) = sqrt(x)+1
 
-julia&gt; f(<span class="fl">1</span>)
-<span class="fl">2</span></code></pre></div>
+julia&gt; f(1)
+2</code></pre>
 </section>
 <section id="运算符也是函数" class="slide level1">
 <h1>运算符也是函数</h1>
 </section>
 <section id="匿名函数" class="slide level1">
 <h1>匿名函数</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; x-&gt;x^<span class="fl">2</span>+x
-(anonymous <span class="kw">function</span>)
+<pre class="julia"><code>julia&gt; x-&gt;x^2+x
+(anonymous function)
 
-julia&gt; <span class="kw">function</span> (x)
-            x^<span class="fl">2</span> + <span class="fl">2</span>x - <span class="fl">1</span>
-       <span class="kw">end</span>
-(anonymous <span class="kw">function</span>)</code></pre></div>
+julia&gt; function (x)
+            x^2 + 2x - 1
+       end
+(anonymous function)</code></pre>
 </section>
 <section id="匿名函数很有用举个例子" class="slide level1">
 <h1>匿名函数很有用,举个例子</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co"># 找出值为1的元素在数组中的位置</span>
-julia&gt; find(x-&gt;x==<span class="fl">1</span>,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>])
-<span class="fl">2</span>-element <span class="dt">Array</span>{<span class="dt">Int64</span>,<span class="fl">1</span>}:
- <span class="fl">1</span>
- <span class="fl">4</span></code></pre></div>
+<pre class="julia"><code># 找出值为1的元素在数组中的位置
+julia&gt; find(x-&gt;x==1,[1,2,3,1])
+2-element Array{Int64,1}:
+ 1
+ 4</code></pre>
 </section>
 <section id="section-9" class="slide level1">
 <h1></h1>
 <p>函数的变量不需要专门进行类型约束,但在需要的时候(比如需要提高程序性能),可以用<code>::</code>来强制变量类型</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">function</span> foo(a::<span class="dt">Int64</span>)
-       <span class="kw">return</span> a
-       <span class="kw">end</span>
-foo (generic <span class="kw">function</span> with <span class="fl">2</span> methods)
+<pre class="julia"><code>julia&gt; function foo(a::Int64)
+       return a
+       end
+foo (generic function with 2 methods)
 
-julia&gt; foo(<span class="fl">1.1</span>)
-ERROR: MethodError: `foo` has no method matching foo(::<span class="dt">Float64</span>)</code></pre></div>
+julia&gt; foo(1.1)
+ERROR: MethodError: `foo` has no method matching foo(::Float64)</code></pre>
 </section>
 <section id="函数变量中可以出现可选变量" class="slide level1">
 <h1>函数变量中可以出现可选变量</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(a = <span class="fl">1</span>)
-    <span class="kw">return</span> a
-<span class="kw">end</span>
+<pre class="julia"><code>function foo(a = 1)
+    return a
+end
 
 julia&gt; foo()
-<span class="fl">1</span>
-julia&gt; foo(<span class="fl">2</span>)
-<span class="fl">2</span> </code></pre></div>
+1
+julia&gt; foo(2)
+2 </code></pre>
 </section>
 <section id="可以出现关键词变量" class="slide level1">
 <h1>可以出现关键词变量</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo(x,y;t=<span class="fl">1</span>)
-    print(<span class="st">&quot;x = $(x),y = $(y),t=$(t)&quot;</span>)
-<span class="kw">end</span>
+<pre class="julia"><code>function foo(x,y;t=1)
+    print(&quot;x = $(x),y = $(y),t=$(t)&quot;)
+end
 
-julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>)
-x = <span class="fl">1</span>,y = <span class="fl">2</span>,t=<span class="fl">1</span>
-julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>,t=<span class="fl">2</span>)
-x = <span class="fl">1</span>,y = <span class="fl">2</span>,t=<span class="fl">2</span>
-julia&gt; foo(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>)
-ERROR: MethodError: `foo` has no method matching foo(::<span class="dt">Int64</span>, ::<span class="dt">Int64</span>, ::<span class="dt">Int64</span>)</code></pre></div>
+julia&gt; foo(1,2)
+x = 1,y = 2,t=1
+julia&gt; foo(1,2,t=2)
+x = 1,y = 2,t=2
+julia&gt; foo(1,2,2)
+ERROR: MethodError: `foo` has no method matching foo(::Int64, ::Int64, ::Int64)</code></pre>
 </section>
 <section id="section-10" class="slide level1">
 <h1></h1>
 <p>注意函数中的变量都是call by reference,但函数中不允许改变除了Array类型以外的外部变量的值.如果所创建的函数对外部值进行了修改,则在<strong>Julia的命名规范</strong>中建议以<code>xxx!</code>的形式进行命名,比如</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> foo!(x::<span class="dt">AbstractArray</span>)
-    x[<span class="fl">1</span>] = <span class="fl">2</span>
-<span class="kw">end</span></code></pre></div>
+<pre class="julia"><code>function foo!(x::AbstractArray)
+    x[1] = 2
+end</code></pre>
 </section>
 <section id="if-else语句" class="slide level1">
 <h1>if else语句</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">if</span> x &lt; y
-  println(<span class="st">&quot;x is less than y&quot;</span>)
-<span class="kw">elseif</span> x &gt; y
-  println(<span class="st">&quot;x is greater than y&quot;</span>)
-<span class="kw">else</span>
-  println(<span class="st">&quot;x is equal to y&quot;</span>)
-<span class="kw">end</span></code></pre></div>
+<pre class="julia"><code>if x &lt; y
+  println(&quot;x is less than y&quot;)
+elseif x &gt; y
+  println(&quot;x is greater than y&quot;)
+else
+  println(&quot;x is equal to y&quot;)
+end</code></pre>
 </section>
 <section id="abc" class="slide level1">
 <h1>a?b:c</h1>
@@ -620,67 +583,67 @@ ERROR: MethodError: `foo` has no method matching foo(::<span class="dt">Int64</s
 </section>
 <section id="while" class="slide level1">
 <h1>while</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; i = <span class="fl">1</span>;
+<pre class="julia"><code>julia&gt; i = 1;
 
-julia&gt; <span class="kw">while</span> i &lt;= <span class="fl">5</span>
+julia&gt; while i &lt;= 5
          println(i)
-         i += <span class="fl">1</span>
-       <span class="kw">end</span>
-<span class="fl">1</span>
-<span class="fl">2</span>
-<span class="fl">3</span>
-<span class="fl">4</span>
-<span class="fl">5</span></code></pre></div>
+         i += 1
+       end
+1
+2
+3
+4
+5</code></pre>
 </section>
 <section id="for" class="slide level1">
 <h1>for</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">for</span> i = <span class="fl">1</span>:<span class="fl">5</span>
+<pre class="julia"><code>julia&gt; for i = 1:5
          println(i)
-       <span class="kw">end</span>
-<span class="fl">1</span>
-<span class="fl">2</span>
-<span class="fl">3</span>
-<span class="fl">4</span>
-<span class="fl">5</span></code></pre></div>
+       end
+1
+2
+3
+4
+5</code></pre>
 </section>
 <section id="section-11" class="slide level1">
 <h1></h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; <span class="kw">for</span> i <span class="kw">in</span> [<span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">0</span>]
+<pre class="julia"><code>julia&gt; for i in [1,4,0]
          println(i)
-       <span class="kw">end</span>
-<span class="fl">1</span>
-<span class="fl">4</span>
-<span class="fl">0</span>
+       end
+1
+4
+0
 
-julia&gt; <span class="kw">for</span> s <span class="kw">in</span> [<span class="st">&quot;foo&quot;</span>,<span class="st">&quot;bar&quot;</span>,<span class="st">&quot;baz&quot;</span>]
+julia&gt; for s in [&quot;foo&quot;,&quot;bar&quot;,&quot;baz&quot;]
          println(s)
-       <span class="kw">end</span>
+       end
 foo
 bar
-baz</code></pre></div>
+baz</code></pre>
 </section>
 <section id="变量" class="slide level1">
 <h1>变量</h1>
 <p>变量可以用<code>type</code>来创建,类似与c++和python的<code>class</code>,但由于Julia的面向对象采用的是多重派发,并不支持在类型内部创建属于本类型的函数(method),但可以穿件构造函数</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">type</span> foo
-    a::<span class="dt">Int64</span>
+<pre class="julia"><code>type foo
+    a::Int64
     b
     foo(x,y) = new(x,y)
-<span class="kw">end</span></code></pre></div>
+end</code></pre>
 <p><code>new</code>函数按照顺序给<code>foo</code>中的两个变量赋值</p>
 </section>
 <section id="使用packagemodules" class="slide level1">
 <h1>使用package/modules</h1>
 <p>module关键词提供了命名空间,一般类库或者框架都会用module进行封装.使用某个库的方法是(以IJulia为例)</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">using IJulia
-notebook()</code></pre></div>
+<pre class="julia"><code>using IJulia
+notebook()</code></pre>
 </section>
 <section id="section-12" class="slide level1">
 <h1></h1>
 <p>这样就将在<code>IJulia</code> 这个module中<code>export</code> 出的函数(包括构造函数)直接放在了当前的名字空间里.</p>
 <p>而如果采用 <code>import</code> 则需要先指出名字空间</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">import</span> IJulia
-IJulia.notebook()</code></pre></div>
+<pre class="julia"><code>import IJulia
+IJulia.notebook()</code></pre>
 </section>
 <section id="安装package" class="slide level1">
 <h1>安装package</h1>
@@ -699,10 +662,10 @@ IJulia.notebook()</code></pre></div>
 2 &amp; 1
 \end{pmatrix}
 $$</span><br /></p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; [<span class="fl">1</span> <span class="fl">0</span>;<span class="fl">2</span> <span class="fl">1</span>]
-<span class="fl">2</span>x2 <span class="dt">Array</span>{<span class="dt">Int64</span>,<span class="fl">2</span>}:
- <span class="fl">1</span>  <span class="fl">0</span>
- <span class="fl">2</span>  <span class="fl">1</span></code></pre></div>
+<pre class="julia"><code>julia&gt; [1 0;2 1]
+2x2 Array{Int64,2}:
+ 1  0
+ 2  1</code></pre>
 </section>
 <section id="section-14" class="slide level1">
 <h1></h1>
@@ -711,10 +674,10 @@ $$</span><br /></p>
 <section id="稀疏矩阵" class="slide level1">
 <h1>稀疏矩阵</h1>
 <p>使用<code>sparse</code>函数将dense matrix转化为稀疏矩阵存储</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">julia&gt; sparse([<span class="fl">0</span> <span class="fl">1</span>;<span class="fl">1</span> <span class="fl">0</span>])
-<span class="fl">2</span>x2 sparse matrix with <span class="fl">2</span> <span class="dt">Int64</span> entries:
-    [<span class="fl">2</span>, <span class="fl">1</span>]  =  <span class="fl">1</span>
-    [<span class="fl">1</span>, <span class="fl">2</span>]  =  <span class="fl">1</span></code></pre></div>
+<pre class="julia"><code>julia&gt; sparse([0 1;1 0])
+2x2 sparse matrix with 2 Int64 entries:
+    [2, 1]  =  1
+    [1, 2]  =  1</code></pre>
 </section>
 <section id="juliaquantum" class="slide level1">
 <h1>JuliaQuantum</h1>

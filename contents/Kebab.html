@@ -10,43 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="../css/reveal.css"/>
     <style type="text/css">code{white-space: pre;}</style>
-    <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    </style>
     <link rel="stylesheet" href="../css/theme/black.css" id="theme">
 
     <!-- Code syntax highlighting -->
@@ -246,13 +209,13 @@ $$</span><br /></p>
 </section>
 <section id="section-16" class="slide level1">
 <h1></h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia">H = AdiaSystem([TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">6</span>]),
-    TruthTable(<span class="fl">0</span>b10010111,[<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">6</span>]), 
-    ],<span class="fl">7</span>,<span class="fl">1e3</span>)</code></pre></div>
+<pre class="julia"><code>H = AdiaSystem([TruthTable(0b10010111,[1,2,3]),
+    TruthTable(0b10010111,[2,3,4]),
+    TruthTable(0b10010111,[3,4,5]),
+    TruthTable(0b10010111,[5,6,7]),
+    TruthTable(0b10010111,[1,5,6]),
+    TruthTable(0b10010111,[2,3,6]), 
+    ],7,1e3)</code></pre>
 </section>
 <section id="operate-the-adiabatic-evolution" class="slide level1">
 <h1>Operate the Adiabatic Evolution</h1>
@@ -326,15 +289,15 @@ $$</span><br /></p>
 <section id="section-27" class="slide level1">
 <h1></h1>
 <p>some commonly used gates have already have wrappers,eg.</p>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="co">#Hadamard gate</span>
-<span class="kw">function</span> Hadamard(state::<span class="dt">AbstractVector</span>,ID::<span class="dt">Integer</span>)
+<pre class="julia"><code>#Hadamard gate
+function Hadamard(state::AbstractVector,ID::Integer)
 
-<span class="co">#Controled R_k gate</span>
-<span class="kw">function</span> C_R_k(
-    state::<span class="dt">AbstractVector</span>,
-    CID::<span class="dt">Integer</span>,UCID::<span class="dt">Integer</span>,
-    k::<span class="dt">Integer</span>
-    )</code></pre></div>
+#Controled R_k gate
+function C_R_k(
+    state::AbstractVector,
+    CID::Integer,UCID::Integer,
+    k::Integer
+    )</code></pre>
 </section>
 <section id="section-28" class="slide level1">
 <h1></h1>
@@ -345,32 +308,32 @@ $$</span><br /></p>
 </section>
 <section id="section-29" class="slide level1">
 <h1></h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> SingleQubitQFT!(state::<span class="dt">AbstractVector</span>,bitID::<span class="dt">Integer</span>)
+<pre class="julia"><code>function SingleQubitQFT!(state::AbstractVector,bitID::Integer)
     state_len = length(state)
-    bit_num = <span class="dt">Int</span>(log2(state_len))
+    bit_num = Int(log2(state_len))
 
-    @assert bitID&lt;=bit_num <span class="st">&quot;bit ID out of bounds&quot;</span>
+    @assert bitID&lt;=bit_num &quot;bit ID out of bounds&quot;
     
     copy!(state,Hadamard(state,bitID))
-    <span class="kw">for</span> i=<span class="fl">1</span>:(bitID-<span class="fl">1</span>)
+    for i=1:(bitID-1)
         copy!(state,C_R_k(state,bitID-i,bitID,i))
-    <span class="kw">end</span>
-    <span class="kw">return</span> state
-<span class="kw">end</span></code></pre></div>
+    end
+    return state
+end</code></pre>
 </section>
 <section id="for-every-bit" class="slide level1">
 <h1>For every bit</h1>
-<div class="sourceCode"><pre class="sourceCode julia"><code class="sourceCode julia"><span class="kw">function</span> QFT!(state::<span class="dt">AbstractVector</span>)
+<pre class="julia"><code>function QFT!(state::AbstractVector)
     state_len = length(state)
-    bit_num = <span class="dt">Int</span>(log2(state_len))
+    bit_num = Int(log2(state_len))
 
     i = bit_num
-    <span class="kw">while</span> i&gt;<span class="fl">0</span>
+    while i&gt;0
         SingleQubitQFT!(state,i)
-        i-=<span class="fl">1</span>
-    <span class="kw">end</span>
-    <span class="kw">return</span> state
-<span class="kw">end</span></code></pre></div>
+        i-=1
+    end
+    return state
+end</code></pre>
 </section>
 <section id="kebab-is-opensource" class="slide level1">
 <h1>Kebab is OpenSource!</h1>
