@@ -50,22 +50,9 @@ of sub-networks.
 
 ![](../img/ml-struct.png)
 
-
-# CNN
-
 # A brief intro of CNN
 In machine learning, a convolutional neural network (CNN, or ConvNet) is a type of feed-forward artificial neural network in which the connectivity pattern between its neurons is inspired by the organization of the animal visual cortex, whose individual neurons are arranged in such a way that they respond to overlapping regions tiling the visual field.
 
 #
 
 ![](../img/Conv_layers.png)
-
-# Use CNNs in Video Classification
-
-The CNNs have been established as a powerful class of models for image recognition as a powerful class of models for image-recognition problems. But when we add a time-domain data in the training set like videos. The precision become much lower than images.
-
-# Large-Scale Video Classification by CNNs
-
-This is a CVPR2014 paper by Google and Stanford.
-
-In this paper, researchers explored a pretty large data-set (1 million videos) in four different architectures. And the best architecture improved the precision from
