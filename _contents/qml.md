@@ -76,6 +76,14 @@ Preparing this state is efficient as the $e^{-E(v,h)}$ and $Q(v,h)$ can be calcu
 
 ---
 
+Complexity analysis:
+
+CD-k: $N_{train}lEk$
+GEQAE: $\sqrt{N_{train}}E^2(\sqrt{\kappa}+max_{x}\sqrt{\kappa_x})$
+
+---
+
+
 ## reference
 
 [1] Quantum Deep Learning, Nathan Wiebe, Ashish Kapoor, and Krysta M. Svore
