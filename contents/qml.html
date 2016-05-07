@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>quantum machine learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">quantum machine learning</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="towards-the-age-of-quantum-computing" class="slide level1">
+<h1>Towards the age of quantum computing</h1>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<p>As experimental implementation of quantum computing grew rapidly in recently years, it would be possible to consider the machine learning algorithm in quantum computing.</p>
+</section>
+<section id="motivation" class="slide level1">
+<h1>Motivation</h1>
+<p>The interface for quantum computing could still be difficult to use. There are various frameworks and libraries in classical machine learning algorithms. However, none of them includes quantum algorithms. This proposal would mainly focus on implementing existing quantum machine learning related algorithms in a user-friendly interface based on the simulation framework <code>quantum++</code> and <code>QuCmp.jl</code></p>
+</section>
+<section class="slide level1">
+
+<h3 id="quantum-and-qucmp.jl">Quantum++ and QuCmp.jl</h3>
+<p><code>Quantum++</code> is a c++ based quantum simulation framework implemented by IQC (Institue of Quantum Computing) and <code>QuCmp.jl</code> is a simulation framework based on Julia.</p>
+</section>
+<section class="slide level1">
+
+<p>Project Goal: class library for quantum machine learning</p>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<p>The proposal will realize:</p>
+<ul>
+<li class="fragment">quantum reject sampling</li>
+<li class="fragment">Gradient Estimation via Quantum Sampling</li>
+<li class="fragment">Gradient Estimation via Quantum Ampitude Estimation</li>
+<li class="fragment">A simple Quantum Deep Bolzman Machine via GEQS and GEQAE</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p>A brief intro for quantum deep learning:</p>
+</section>
+<section class="slide level1">
+
+<p>Quantum deep learning is mainly based on Boltzmann machine: <br /><span class="math display"><em>E</em>(<em>v</em>, <em>h</em>)= − ∑<sub><em>i</em></sub><em>v</em><sub><em>i</em></sub><em>b</em><sub><em>i</em></sub> − ∑<sub><em>j</em></sub><em>h</em><sub><em>j</em></sub><em>d</em><sub><em>j</em></sub> − ∑<sub><em>i</em>, <em>j</em></sub><em>ω</em><sub><em>i</em><em>j</em></sub><sup><em>v</em><em>h</em></sup><em>v</em><sub><em>i</em></sub><em>h</em><sub><em>j</em></sub> − ∑<sub><em>i</em>, <em>j</em></sub><em>ω</em><sub><em>i</em>, <em>j</em></sub><sup><em>v</em></sup><em>v</em><sub><em>i</em></sub><em>v</em><sub><em>j</em></sub> − ∑<sub><em>i</em>, <em>j</em></sub><em>ω</em><sub><em>i</em>, <em>h</em></sub><sup><em>h</em></sup><em>h</em><sub><em>i</em></sub><em>h</em><sub><em>j</em></sub></span><br /></p>
+<p>The training of a Boltzmann machine could be extremely hard on classical computer. However, it may not be a big question for a quantum computer.</p>
+</section>
+<section class="slide level1">
+
+<p>The quantum deep learning algorithm is actually based on Deep Boltzmann machine (with multiple hidden layers)</p>
+</section>
+<section class="slide level1">
+
+<p>And the algorithm to achieve a fast training speed is introduced as Gradient Estimation via Quatnum Sampling. By some mathematical calculation, if the state:</p>
+<p><br /><span class="math display">$$
+\sum_{v,h} \sqrt{Q(v,h)} |v\rangle|h\rangle
+$$</span><br /></p>
+</section>
+<section class="slide level1">
+
+<p>is prepared and each of the amplitudes are multiplied by <span class="math inline">$\sqrt{P(v,h)}$</span> , then the result will be proportional to the desired state.</p>
+<p><br /><span class="math display">$$
+\sum_{v,h} \sqrt{Q(v,h)}|v\rangle|h\rangle|P(v,h)\rangle (\sqrt{1-P(v,h)}|0\rangle +\sqrt{P(v,h)}|1\rangle)
+$$</span><br /></p>
+</section>
+<section class="slide level1">
+
+<p>Preparing this state is efficient as the <span class="math inline"><em>e</em><sup>−<em>E</em>(<em>v</em>, <em>h</em>)</sup></span> and <span class="math inline"><em>Q</em>(<em>v</em>, <em>h</em>)</span> can be calcualted in time that is polynomial in the number of visible and hidden units.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="reference">reference</h2>
+<p>[1] Quantum Deep Learning, Nathan Wiebe, Ashish Kapoor, and Krysta M. Svore</p>
+<p>[2] Quantum Reject Sampling, Maris Ozols, Martin Roetteler</p>
+<p>[3] Machine Learning in a Quantum World</p>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

@@ -60,6 +60,13 @@
 <h1></h1>
 <p>Person re-identification (re-id) is essentially the task of recognizing if a person has been observed in different locations over a set of non-overlapping cameras views. It's an important task for surveillance applications, either for on-line tracking of an individual over a network of cameras, or for off-line retrieval of all videos containing a person of interest.</p>
 </section>
+<section class="slide level1">
+
+<p>A typical application scenario of person re-identification: a network of video surveillance cameras monitoring a large public space. The girl is seen at first by the camera in the upper-left corner, then by a second camera of the network (lower-right corner). A person re-identification system should associate these views to the same identity.</p>
+<figure>
+<img src="../img/ml-reid.png" />
+</figure>
+</section>
 <section id="related-works" class="slide level1">
 <h1>Related works</h1>
 </section>
@@ -68,15 +75,15 @@
 </section>
 <section id="section-1" class="slide level1">
 <h1></h1>
-<p><br /><span class="math display">$$
-f(D) = (1-\alpha) \sum_{x_i,x_j,y_i=y_j} D(\vec{x_i},\vec{x_j}) +\\ \alpha \sum_{x_i,x_j,y_i=y_j} \max{D(\vec{x_i},\vec{x_j})-\min_{y_k\neq y_i}D(\vec{x_i},\vec{x_k})+\rho,0}
-$$</span><br /></p>
-</section>
-<section id="section-2" class="slide level1">
-<h1></h1>
 <figure>
 <img src="../img/ml-1.png" />
 </figure>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<p><br /><span class="math display">$$
+f(D) = (1-\alpha) \sum_{x_i,x_j,y_i=y_j} D(\vec{x_i},\vec{x_j}) +\\ \alpha \sum_{x_i,x_j,y_i=y_j} \max{D(\vec{x_i},\vec{x_j})-\min_{y_k\neq y_i}D(\vec{x_i},\vec{x_k})+\rho,0}
+$$</span><br /></p>
 </section>
 <section id="section-3" class="slide level1">
 <h1></h1>
@@ -117,6 +124,31 @@ $$</span><br /></p>
 <figure>
 <img src="../img/Conv_layers.png" />
 </figure>
+</section>
+<section class="slide level1">
+
+<p>CNN works well in &quot;sample <span class="math inline">→</span> label&quot; training data sets. But for person re-identification, the subjects in the training set are generally different from those in the test set. In this work, researcher introduced a siamese CNN.</p>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="../img/ml-flowchart.png" />
+</figure>
+</section>
+<section class="slide level1">
+
+<p>connection function is used to evaluate the connection between sample pairs, candidates could be Eu- clidian distance, Cosine similarity, absolute difference, vector concatenate and so on.</p>
+</section>
+<section class="slide level1">
+
+<p><br /><span class="math display">$$
+\begin{aligned}
+S_{euc}(x,y) &amp;= -\sum_{i}(x_i-y_i)^2\\
+S_{cos}(x,y) &amp;= \frac{\sum_i x_i y_i}{\sqrt{\sum_i x_i x_i \sum_i y_i y_i}}\\
+S_{abs}(x,y) &amp;= -\sum_{i}|x_i-y_i|\\
+S_{con}(x,y) &amp;= \sum_{i} \omega_i [x;y]_i
+\end{aligned}
+$$</span><br /></p>
 </section>
     </div>
   </div>
