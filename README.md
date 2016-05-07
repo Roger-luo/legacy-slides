@@ -6,7 +6,7 @@
 
 ### Course Projects
 - [Optic based TRNG](contents/PhyxEx.html)
-- [Person Re-identification](contents/ml_course_project.md)
+- [Person Re-identification](contents/ml_course_project.html)
 
 ## Julia
 - [Talks on lqcc's group meeting](contents/lqcc.html)
