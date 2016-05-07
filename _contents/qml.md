@@ -1,6 +1,6 @@
 ---
 title: quantum machine learning
-author: Roger Luo
+author: 罗秀哲,林霆,康文永,魏正威
 ...
 
 # Towards the age of quantum computing
