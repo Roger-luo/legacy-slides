@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Person re-identification</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Person re-identification</h1>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="section" class="slide level1">
+<h1></h1>
+<p>Person re-identification (re-id) is essentially the task of recognizing if a person has been observed in different locations over a set of non-overlapping cameras views. It's an important task for surveillance applications, either for on-line tracking of an individual over a network of cameras, or for off-line retrieval of all videos containing a person of interest.</p>
+</section>
+<section id="related-works" class="slide level1">
+<h1>Related works</h1>
+</section>
+<section id="cvpr-top-push-video-based-person-re-identification" class="slide level1">
+<h1>[2016,CVPR] Top-push Video-based Person Re-identification</h1>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<p><br /><span class="math display">$$
+f(D) = (1-\alpha) \sum_{x_i,x_j,y_i=y_j} D(\vec{x_i},\vec{x_j}) +\\ \alpha \sum_{x_i,x_j,y_i=y_j} \max{D(\vec{x_i},\vec{x_j})-\min_{y_k\neq y_i}D(\vec{x_i},\vec{x_k})+\rho,0}
+$$</span><br /></p>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/ml-1.png" />
+</figure>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/ml-2.png" />
+</figure>
+</section>
+<section id="results" class="slide level1">
+<h1>Results</h1>
+<figure>
+<img src="../img/ml-3.png" />
+</figure>
+</section>
+<section id="deep-metric-learning-for-person-re-identification" class="slide level1">
+<h1>Deep Metric Learning for Person Re-Identification</h1>
+</section>
+<section class="slide level1">
+
+<h3 id="advantages">Advantages</h3>
+<ul>
+<li class="fragment">DML can learn a similarity metric from image pixels directly. All layers in DML are optimized by the same objective function, which are more effective than the hand-crafted features in traditional methods.</li>
+<li class="fragment">The multi-channel filters learned in DML can capture the color and texture information simultaneously, which are more reasonable than the simple fusion strategies in traditional methods,e.g.,feature concate-nation and sum rule.</li>
+<li class="fragment">The structure of DML is flexible that can easily switch between view specific and general person re- identification tasks by whether sharing the parameters of sub-networks.</li>
+</ul>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/ml-struct.png" />
+</figure>
+</section>
+<section id="cnn" class="slide level1">
+<h1>CNN</h1>
+</section>
+<section id="a-brief-intro-of-cnn" class="slide level1">
+<h1>A brief intro of CNN</h1>
+<p>In machine learning, a convolutional neural network (CNN, or ConvNet) is a type of feed-forward artificial neural network in which the connectivity pattern between its neurons is inspired by the organization of the animal visual cortex, whose individual neurons are arranged in such a way that they respond to overlapping regions tiling the visual field.</p>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<figure>
+<img src="../img/Conv_layers.png" />
+</figure>
+</section>
+<section id="use-cnns-in-video-classification" class="slide level1">
+<h1>Use CNNs in Video Classification</h1>
+<p>The CNNs have been established as a powerful class of models for image recognition as a powerful class of models for image-recognition problems. But when we add a time-domain data in the training set like videos. The precision become much lower than images.</p>
+</section>
+<section id="large-scale-video-classification-by-cnns" class="slide level1">
+<h1>Large-Scale Video Classification by CNNs</h1>
+<p>This is a CVPR2014 paper by Google and Stanford.</p>
+<p>In this paper, researchers explored a pretty large data-set (1 million videos) in four different architectures. And the best architecture improved the precision from</p>
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

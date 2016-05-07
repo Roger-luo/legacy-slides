@@ -2,8 +2,11 @@
 
 ## Projects' Slides
 
-- [Optic based TRNG](contents/PhyxEx.html)
 - [Kebab](contents/Kebab.html)
+
+### Course Projects
+- [Optic based TRNG](contents/PhyxEx.html)
+- [Person Re-identification](contents/ml_course_project.md)
 
 ## Julia
 - [Talks on lqcc's group meeting](contents/lqcc.html)
