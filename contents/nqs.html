@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>Neural Network Quantum State</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Neural Network Quantum State</h1>
+  <h1 class="subtitle">A machine learning approach</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section><section id="a-brief-intro-for-boltzmann-machine" class="titleslide slide level1"><h1>A brief intro for Boltzmann machine</h1></section><section class="slide level2">
+
+<p>This part is in my <a href="http://rogerluo.me/en/2016/09/25/boltzmann-machine/">blog</a></p>
+<p>Chinese version: <a href="http://rogerluo.me/2016/11/10/boltmann-machine/">Boltzmann Machine</a></p>
+</section><section class="slide level2">
+
+<p>A Boltzmann machine, like a Hopefield network, is a network of units with an &quot;energy&quot; defined for the network. It also has binary units, but unlike Hopefield nets, Boltzmann machine units are stochastic. The global energy <span class="math inline"><em>E</em></span>, in a Boltzmann machine is identical in form to that of a Hopfield network</p>
+</section><section class="slide level2">
+
+<p><br /><span class="math display"><em>E</em> = −(∑<sub><em>i</em>, <em>j</em></sub><em>ω</em><sub><em>i</em><em>j</em></sub><em>s</em><sub><em>i</em></sub><em>s</em><sub><em>j</em></sub> + ∑<sub><em>i</em></sub><em>θ</em><sub><em>i</em></sub><em>s</em><sub><em>i</em></sub>)</span><br /></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline"><em>ω</em><sub><em>i</em><em>j</em></sub></span> is the connection strength between unit <span class="math inline"><em>j</em></span> and unit <span class="math inline"><em>i</em></span></li>
+<li><span class="math inline"><em>s</em><sub><em>i</em></sub></span> is the state, <span class="math inline"><em>s</em><sub><em>i</em></sub> ∈ 0, 1</span>, of unit <span class="math inline"><em>i</em></span></li>
+<li><span class="math inline"><em>θ</em><sub><em>i</em></sub></span> is the bias of unit <span class="math inline"><em>i</em></span> in the global energy function. (<span class="math inline">−<em>θ</em><sub><em>i</em></sub></span> is the activation threshold for the unit)</li>
+</ul>
+</section><section class="slide level2">
+
+<p>Often the weights are represented in matrix form with a symmetric matrix <span class="math inline"><em>W</em></span>, with zeros along the diagonal.</p>
+</section><section class="slide level2">
+
+<h3 id="probability-of-a-units-state">Probability of a unit's state</h3>
+<p>The difference in the global energy that results from a single unit <span class="math inline"><em>i</em></span> being 0 (off) versus 1 (on), written <span class="math inline"><em>Δ</em><em>E</em><sub><em>i</em></sub></span>, assuming a symmetric matrix of weights, is given by:</p>
+<p><br /><span class="math display"><em>Δ</em><em>E</em><sub><em>i</em></sub> = ∑<sub><em>j</em></sub><em>ω</em><sub><em>i</em><em>j</em></sub><em>s</em><sub><em>j</em></sub> + <em>θ</em><sub><em>i</em></sub></span><br /></p>
+</section><section class="slide level2">
+
+<p>This can be expressed as the difference of energies of two states:</p>
+<p><br /><span class="math display"><em>Δ</em><em>E</em><sub><em>i</em></sub> = <em>E</em><sub><em>i</em> = <em>o</em><em>f</em><em>f</em></sub> − <em>E</em><sub><em>i</em> = <em>o</em><em>n</em></sub></span><br /></p>
+</section><section class="slide level2">
+
+<p>We then substitute the energy of each state with its relative probability</p>
+<p><br /><span class="math display">$$
+\begin{aligned}
+\Delta E_i &amp;= -T\ln(p_{i=off})+T\ln(p_{i=on})\\\\
+\frac{\Delta E_i}{T} &amp;= \ln(p_{i=on}) - \ln(1-p_{i=on})\\\\
+p_{i=on} &amp;= \frac{1}{1+\exp(-\frac{\Delta E_i}{T})}
+\end{aligned}
+$$</span><br /></p>
+<p>Where <span class="math inline"><em>T</em></span> is the temperature of the system.</p>
+</section><section class="slide level2">
+
+<h3 id="equilibrium-state">Equilibrium state</h3>
+<ul>
+<li class="fragment">choosing a unit</li>
+<li class="fragment">setting its state according to the above formula</li>
+<li class="fragment">Repeat!</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="training">Training</h3>
+<p>Divide units into:</p>
+<ul>
+<li class="fragment">visible</li>
+<li class="fragment">hidden</li>
+</ul>
+</section><section class="slide level2">
+
+<p>The visible units are those which receive information from the 'environment', i.e. our training set is a set of binary vectors over the set V. The distribution over the training set is denoted <span class="math inline"><em>P</em><sup>+</sup>(<em>V</em>)</span>.</p>
+</section><section class="slide level2">
+
+<p>As is discussed above, the distribution over global states converges as the Boltzmann machine reached thermal equilibrium. We denote this distribution, after we marginalize it over the hidden units, as <span class="math inline"><em>P</em><sup>−</sup>(<em>V</em>)</span>.</p>
+</section><section class="slide level2">
+
+<p>Our goal is to approximate the 'real' distribution <span class="math inline"><em>P</em><sup>+</sup>(<em>V</em>)</span> using the <span class="math inline"><em>P</em><sup>−</sup>(<em>V</em>)</span> which will be produced (eventually) by the machine. To measure how similar the two distributions are, we use the Kullback-Leibler divergence (ususlly noted as KL-divergence) <span class="math inline"><em>K</em><em>L</em>(+|−)</span>:</p>
+</section><section class="slide level2">
+
+<p><br /><span class="math display">$$
+KL(+|-) = \sum_{v} P^+ (v) \ln(\frac{P^{+}(v)}{P^{-}(v)})
+$$</span><br /></p>
+</section><section class="slide level2">
+
+<p>where the sum is over all the possible states of <span class="math inline"><em>V</em></span>. <span class="math inline"><em>K</em><em>L</em>(+|−)</span> is a function of the weights, since they determine the energy of a state, and the energy determines <span class="math inline"><em>P</em><sup>−</sup>(<em>v</em>)</span>. Therefore, a gradient decent can be simply applied over <span class="math inline"><em>K</em><em>L</em></span></p>
+</section><section class="slide level2">
+
+<p>Actually, the process of training a Boltzmann machine we discussed above can be considered as a thermal equilibrium process with artificial boundary condition.</p>
+</section><section class="slide level2">
+
+<p>(The boundary is determined by visible units) The training method we use is likely a kind of equilibrium statistical mechanics, recent research has been considering the application about nonequilibrium statistical mechanics on unsupervised learning. (see <a href="https://arxiv.org/pdf/1503.03585.pdf">arxiv:1503.03585</a>)</p>
+</section><section class="slide level2">
+
+</section></section>
+<section><section id="neural-network-quantum-state" class="titleslide slide level1"><h1>Neural-Network Quantum State</h1></section><section class="slide level2">
+
+<p>A quantum state can be perfectly mapped to a Boltzmann Machine's probability distribution, which has been widely applied into quantum machine learning algorithms.</p>
+</section><section class="slide level2">
+
+<p>eg.</p>
+<p><br /><span class="math display"><em>P</em>(00⋯00)|00⋯00⟩+<em>P</em>(00⋯01)|00⋯01⟩+⋯+<em>P</em>(11⋯11)|11⋯11⟩</span><br /></p>
+<p><br /><span class="math display"><em>P</em>(<em>v</em>, <em>h</em>)|<em>v</em>⟩|<em>h</em>⟩→<em>P</em><sub><em>M</em><em>o</em><em>d</em><em>e</em><em>l</em></sub>(<em>v</em>, <em>h</em>|<em>W</em>)</span><br /></p>
+</section><section class="slide level2">
+
+<p>In this work, the quantum state is represented in this form</p>
+<p><br /><span class="math display"><em>P</em>(<em>v</em>, <em>h</em>|<em>W</em>)=∑<sub><em>h</em><sub><em>i</em></sub></sub><em>e</em><sup>∑<sub><em>j</em></sub><em>a</em><sub><em>j</em></sub><em>σ</em><sub><em>j</em></sub><sup><em>z</em></sup> + ∑<sub><em>i</em></sub><em>b</em><sub><em>i</em></sub><em>h</em><sub><em>i</em></sub> + ∑<sub><em>i</em><em>j</em></sub><em>W</em><sub><em>i</em><em>j</em></sub><em>h</em><sub><em>i</em></sub><em>σ</em><sub><em>j</em></sub><sup><em>z</em></sup></sup></span><br /></p>
+<p>where <span class="math inline"><em>σ</em><sub><em>j</em></sub><sup><em>z</em></sup></span> represents the <span class="math inline"><em>j</em></span>th spin configuration on z-axis, and it is called the Neural-network Quantum State.</p>
+</section><section class="slide level2">
+
+<p>And the quantum state is</p>
+<p><br /><span class="math display">|<em>Ψ</em>⟩=∑<em>P</em>(<em>h</em>, <em>v</em>|<em>W</em>)|<em>h</em>⟩|<em>v</em>⟩</span><br /></p>
+</section><section class="slide level2">
+
+<h3 id="training-1">Training</h3>
+<p>Training is accomplished by optimizing the Energy</p>
+<p><br /><span class="math display">$$
+E = \frac{\langle\Psi|H|\Psi\rangle}{\langle\Psi|\Psi\rangle}
+$$</span><br /></p>
+</section><section class="slide level2">
+
+</section></section>
+<section><section id="optimization-method" class="titleslide slide level1"><h1>Optimization Method</h1></section><section class="slide level2">
+
+<p>Current Optimization Method we re-implemented is the Stochastic Reconfiguration Method, however according to the author its performance is not good.</p>
+</section><section id="sr-optimization" class="slide level2">
+<h1>SR optimization</h1>
+<p><a href="https://www.zybuluo.com/RogerLuo/note/670176">notes</a></p>
+</section><section id="will-imaginary-evolution-work" class="slide level2">
+<h1>Will imaginary evolution work?</h1>
+</section><section class="slide level2">
+
+</section></section>
+<section><section id="proposals" class="titleslide slide level1"><h1>Proposals</h1></section><section class="slide level2">
+
+<p>Since the performence of a neural network mainly depends on it topological structure rather than optimization method, several possible nets could be applied in calculating ground state inspired by NQS</p>
+<ul>
+<li class="fragment">Reinforcement learning methods</li>
+<li class="fragment">Deep Belief Nets</li>
+<li class="fragment">Deep Boltzmann Machine + Deep Belief Nets</li>
+</ul>
+</section><section class="slide level2">
+
+<p>Furthermore, will NQS be expended to Hamiltonian? eg. Convert a complex Hamiltonian to a simple Hamiltonian by Neural nets?</p>
+<p>some possible approaches inspired from quantum machine learning algorithms:</p>
+<ul>
+<li class="fragment">Quantum Boltzmann machine</li>
+<li class="fragment">Fermion Bolzamnn machine</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
