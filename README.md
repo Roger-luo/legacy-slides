@@ -18,6 +18,9 @@
     - [The Chinese Julia Community](contents/JuliaCN.html)
     - [Use Julia in Quantum Science](contents/JuliaQuantum.html)
 
+## LQCC
+
+- [nqs](contents/nqs.html)
 
 ---
 
