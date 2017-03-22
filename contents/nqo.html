@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>Neural-netowrk operator</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Neural-netowrk operator</h1>
+  <h1 class="subtitle">A machine learning version of Matrix Product Operator</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section><section id="deep-neural-network-quantum-operator" class="titleslide slide level1"><h1>Deep Neural-network Quantum Operator</h1></section><section id="why-we-need-a-dnqo" class="slide level2">
+<h1>Why we need a DNQO?</h1>
+<ul>
+<li class="fragment">Currently, the cost of sampling to gain desire gradient and energy information is costy because of <strong>large sampling space</strong>.</li>
+<li class="fragment">We cannot write a neural-network quantum state in the form of tensor networks for sampling</li>
+<li class="fragment">There is no need to sampling an energy in the whole space: Our state is represented in the form of NQS.</li>
+</ul>
+</section><section class="slide level2">
+
+<p>A DNQO based algorithm proposal: Use a neural-network to approximate a Hamiltonian <span class="math inline"><em>H</em>(<em>W</em>, <em>Θ</em>)</span>, where <span class="math inline"><em>W</em></span> is a NQS parameter, which is a one-to-one map between parameter space and state space, <span class="math inline"><em>Θ</em></span> is the parameter for Hamiltonian network.</p>
+</section><section class="slide level2">
+
+<ol type="1">
+<li><strong>Generate Data</strong> Random generate <span class="math inline"><em>W</em></span> to get a random neural-network quantum state: <span class="math inline">|<em>Ψ</em>(<em>W</em>)⟩</span></li>
+<li><strong>Train NQO(Neural-network quantum operator) network</strong>
+<ol type="1">
+<li><strong>Generate A Data Set</strong> Label all the NQS parameter <span class="math inline"><em>W</em><sub><em>i</em></sub></span> with its energy <span class="math inline"><em>E</em><sub><em>i</em></sub></span>, gradient <span class="math inline">∂<em>E</em></span> and etc. by metropolis sampling</li>
+<li><strong>Data Set</strong> A labeled data set <span class="math inline">(<em>W</em>, <em>E</em>)</span>, where <span class="math inline"><em>E</em></span> is the energy sampled from Hamiltonian <span class="math inline"><em>H</em></span></li>
+</ol></li>
+</ol>
+</section><section class="slide level2">
+
+<p><strong>Advantage</strong>:</p>
+<ol type="1">
+<li>Abundant neural nets can be choosen for the task</li>
+<li>Possible candidates like DBM and GAN could reduce the error costed by noise</li>
+<li>A NQO can be used for different task in the framework of NQS with a single network for tasks (in science case, its a RBM)</li>
+<li>High degree of parallelism in sampling</li>
+</ol>
+<p>(<em>Proabably we will toatally abandon the language of tensor nets under the framework of NQS</em>)</p>
+</section><section class="slide level2">
+
+</section></section>
+<section><section id="train-a-nqs-with-dnqo" class="titleslide slide level1"><h1>Train a NQS with (D)NQO</h1></section><section class="slide level2">
+
+<ol type="1">
+<li>Generate an initial (D)NQO <span class="math inline"><em>N</em><em>Q</em><em>O</em>(<em>W</em>, <em>Θ</em>)</span> with a large data set to minimize <span class="math inline">||<em>N</em><em>Q</em><em>O</em>(<em>W</em><sub><em>i</em></sub>, <em>Θ</em>)−⟨<em>Ψ</em>(<em>W</em><sub><em>i</em></sub>)|<em>H</em>|<em>Ψ</em>(<em>W</em><sub><em>i</em></sub>)⟩||</span>, where W is randomly generated by a uniform distribution and the corresponding energy is generated by a metropolis sampling <span class="math inline">⟨<em>Ψ</em>(<em>W</em><sub><em>i</em></sub>)|<em>H</em>|<em>Ψ</em>(<em>W</em><sub><em>i</em></sub>)⟩</span></li>
+</ol>
+</section><section class="slide level2">
+
+<ol start="2" type="1">
+<li><strong>Move state</strong> Evolute NQS parameters <span class="math inline"><em>W</em></span> to minimize <span class="math inline">$||-\frac{d|\Psi(s, W)\rangle}{d(it)} - H |\Psi(s, W)||$</span> (Science algorithm)</li>
+</ol>
+</section><section class="slide level2">
+
+<ol start="3" type="1">
+<li><strong>Expand dataset</strong> the agent should observe its environment while learning, which means we should update our <strong>NQO</strong> while training, a possible strategy:
+<ul>
+<li>randomly insert <span class="math inline"><em>p</em></span> training steps with sampling in training schedule</li>
+<li>move according the schedule, and memorize sampling result in the data pool</li>
+<li>after <span class="math inline"><em>k</em></span> steps, randomly pick a mini-batch from the data pool to renew the <strong>NQO network</strong></li>
+</ul></li>
+</ol>
+</section><section class="slide level2">
+
+<ol start="4" type="1">
+<li><strong>goto 2</strong></li>
+</ol>
+</section><section class="slide level2">
+
+<p><strong>Advantage</strong>:</p>
+<ul>
+<li>make use of <strong>all the sampling results</strong></li>
+<li>other advantage mentioned in NQO part</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
