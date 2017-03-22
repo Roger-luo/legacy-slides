@@ -21,6 +21,7 @@
 ## LQCC
 
 - [nqs](contents/nqs.html)
+- [nqo](contents/nqo.html)
 
 ---
 
