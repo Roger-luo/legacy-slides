@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Neural Network Quantum State</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Neural Network Quantum State</h1>
+  <h1 class="subtitle">A machine learning approach</h1>
+<h3 class="date"></h3>
+</section>
+
+
+<section><section id="current-status" class="titleslide slide level1"><h1>Current Status</h1></section><section class="slide level6">
+
+<ul>
+<li>[x] C++ implementation with <strong>precise</strong> gradient and energy, and openMP shared memory parallelization</li>
+<li>[x] Julia implementation with <strong>precise</strong> gradient and energy</li>
+<li>[ ] C++/Julia implementation with <strong>sampling</strong> gradient and energy, and openMP shared memory parallelization:
+<ul>
+<li>sampling is wrong?</li>
+<li>needs more sampling?</li>
+</ul></li>
+<li>[ ] Implementation of Appendix C, the mimer-pls inverse algorithm</li>
+</ul>
+</section><section class="slide level6">
+
+<p><strong>Optimization algorithms has implemented</strong>:</p>
+<ul>
+<li>Simulated Annealing (C++/MATLAB)</li>
+<li>Particle Swarma Optimization with Simulated Annealing (C++)</li>
+<li>Stochastic Reconfiguration (Julia/C++)</li>
+<li>Gradient Descent with autodiff (Python, tensorflow)</li>
+<li>Adam (Python, tensorflow)</li>
+<li>Adapt Gradient Descent (Python, tensorflow)</li>
+</ul>
+</section><section class="slide level6">
+
+<p>Conclusion:</p>
+<p>Stochastic Reconfiguration (Julia/C++) is the best!</p>
+</section><section class="slide level6">
+
+<p><strong>TODO</strong></p>
+<ul>
+<li>debug for sampling</li>
+<li>implementation for better pinv() algorithm</li>
+<li>c implementation (faster and easier for cuda programming and FLI than c++)</li>
+<li>distributed computing via MPI (accelerate sampling)</li>
+</ul>
+</section><section class="slide level6">
+
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
