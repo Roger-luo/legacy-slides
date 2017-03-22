@@ -22,6 +22,7 @@
 
 - [nqs](contents/nqs.html)
 - [nqo](contents/nqo.html)
+- [nqs-2](contents/nqs_2.html)
 
 ---
 
