@@ -5,19 +5,20 @@ author: Roger Luo
 ...
 
 
-# Deep Neural-network Quantum Operator
+# (Deep) Neural-network Quantum Operator
 
 ---
 
-## Why we need a DNQO?
+## Why we need a (D)NQO?
 
 > - Currently, the cost of sampling to gain desire gradient and energy information is costy because of **large sampling space**. 
 > - We cannot write a neural-network quantum state in the form of tensor networks for sampling
 > - There is no need to sampling an energy in the whole space: Our state is represented in the form of NQS. 
+> - Deep is better than wider. Larger gradient while training.
 
 ---
 
-A DNQO based algorithm proposal: Use a neural-network to approximate a Hamiltonian $H(W, \Theta)$, where $W$ is a NQS parameter, which is a one-to-one map between parameter space and state space, $\Theta$ is the parameter for Hamiltonian network.
+A (D)NQO based algorithm proposal: Use a neural-network to approximate a Hamiltonian $H(W, \Theta)$, where $W$ is a NQS parameter, which is a one-to-one map between parameter space and state space, $\Theta$ is the parameter for Hamiltonian network.
 
 ---
 

@@ -59,16 +59,17 @@
 </section>
 
 
-<section><section id="deep-neural-network-quantum-operator" class="titleslide slide level1"><h1>Deep Neural-network Quantum Operator</h1></section><section id="why-we-need-a-dnqo" class="slide level2">
-<h1>Why we need a DNQO?</h1>
+<section><section id="deep-neural-network-quantum-operator" class="titleslide slide level1"><h1>(Deep) Neural-network Quantum Operator</h1></section><section id="why-we-need-a-dnqo" class="slide level2">
+<h1>Why we need a (D)NQO?</h1>
 <ul>
 <li class="fragment">Currently, the cost of sampling to gain desire gradient and energy information is costy because of <strong>large sampling space</strong>.</li>
 <li class="fragment">We cannot write a neural-network quantum state in the form of tensor networks for sampling</li>
 <li class="fragment">There is no need to sampling an energy in the whole space: Our state is represented in the form of NQS.</li>
+<li class="fragment">Deep is better than wider. Larger gradient while training.</li>
 </ul>
 </section><section class="slide level2">
 
-<p>A DNQO based algorithm proposal: Use a neural-network to approximate a Hamiltonian <span class="math inline"><em>H</em>(<em>W</em>, <em>Θ</em>)</span>, where <span class="math inline"><em>W</em></span> is a NQS parameter, which is a one-to-one map between parameter space and state space, <span class="math inline"><em>Θ</em></span> is the parameter for Hamiltonian network.</p>
+<p>A (D)NQO based algorithm proposal: Use a neural-network to approximate a Hamiltonian <span class="math inline"><em>H</em>(<em>W</em>, <em>Θ</em>)</span>, where <span class="math inline"><em>W</em></span> is a NQS parameter, which is a one-to-one map between parameter space and state space, <span class="math inline"><em>Θ</em></span> is the parameter for Hamiltonian network.</p>
 </section><section class="slide level2">
 
 <ol type="1">
