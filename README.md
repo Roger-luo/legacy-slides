@@ -1,5 +1,8 @@
 # Roger Luo's Slides
 
+## Swarma Club
+- [Neural Networks and Quantum Many-body Physics ](contents/nn-quantum-many-body.pdf)
+
 ## Projects' Slides
 
 - [Kebab](contents/Kebab.html)
