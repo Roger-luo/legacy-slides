@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>PyTorch</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">PyTorch</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section id="some-question" class="slide level1">
+<h1>Some Question</h1>
+<ul>
+<li>What is tensor?</li>
+<li>What is comput graph?</li>
+<li>What is dynamic comput graph?</li>
+<li>Why there is Operators and Variables?</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p><a href="rogerluo.me/slide" class="uri">rogerluo.me/slide</a></p>
+</section>
+<section class="slide level1">
+
+<p>Why PyTorch?</p>
+<p>Faster/Easier</p>
+</section>
+<section id="some-history" class="slide level1">
+<h1>Some history</h1>
+</section>
+<section class="slide level1">
+
+<p>PyTorch, previously is a chainer-like deep learning framework for lua in pure C.</p>
+<ul>
+<li>fastest</li>
+<li>self-implemeted tensor backend</li>
+</ul>
+</section>
+<section id="pure-c-backend" class="slide level1">
+<h1>Pure C Backend</h1>
+</section>
+<section id="the-torch-tensor-backend" class="slide level1">
+<h1>The Torch Tensor Backend</h1>
+</section>
+<section class="slide level1">
+
+<p>Named <code>TH</code>, which offers</p>
+<ul>
+<li>A Storage structure</li>
+<li>A Tensor View of the storage</li>
+</ul>
+</section>
+<section id="a-overview-of-th-macro" class="slide level1">
+<h1>A Overview of TH Macro</h1>
+<p>Generic Types generator</p>
+<pre class="bash"><code>THGenerateXXXTypes.h</code></pre>
+</section>
+<section id="a-overview-of-thnn" class="slide level1">
+<h1>A Overview of THNN</h1>
+</section>
+<section class="slide level1">
+
+<p>forward and backward methods</p>
+</section>
+<section id="chain-them-together-autograd" class="slide level1">
+<h1>Chain them together (autograd)</h1>
+</section>
+<section class="slide level1">
+
+<h2 id="why-variable">Why <code>Variable</code></h2>
+<p>To model grad and value memory allocation</p>
+</section>
+<section class="slide level1">
+
+<h2 id="store-each-op">Store each OP</h2>
+</section>
+<section class="slide level1">
+
+<h2 id="a-python-template-parser-for-c">A Python template parser for C</h2>
+</section>
+<section class="slide level1">
+
+</section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
