@@ -1,5 +1,13 @@
 # Roger Luo's Slides
 
+## Swarma Club
+
+- [Machine Learning in Quantum Physics part 1](contents/swarma.html)
+- [Machine Learning in Quantum Physics part 2](contents/swarma-2.html)
+- [Machine Learning in Quantum Physics part 3](contents/swarma-3.html)
+- [Machine Learning in Quantum Physics part 4](contents/swarma-4.html)
+
+
 <!-- ## Swarma Club
 - [Neural Networks and Quantum Many-body Physics ](contents/nn-quantum-many-body.pdf)
  -->

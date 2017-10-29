@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Roger Luo" />
+  <title>机器学习在量子物理中的应用</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../css/reveal.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+          processEscapes: true
+        },
+        TeX: {
+          equationNumbers: {
+            autoNumber: 'AMS'
+          }
+        },
+        "HTML-CSS": {
+          imageFont: null
+        }
+      });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.1-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">机器学习在量子物理中的应用</h1>
+<h3 class="author">Roger Luo</h3>
+<h3 class="date"></h3>
+</section>
+
+
+<section class="slide level6">
+
+<p>目前机器学习在量子物理中主要有以下应用</p>
+<ul>
+<li class="fragment">作为估计方法应用在和实验相关的领域</li>
+<li class="fragment">用来设计量子线路</li>
+<li class="fragment">辅助调整物理实验参数</li>
+<li class="fragment">凝聚态和多体物理</li>
+</ul>
+</section>
+<section class="slide level6">
+
+<p>我们主要介绍凝聚态和多体物理中的部分</p>
+</section>
+<section><section id="使用神经网络求解量子多体问题" class="titleslide slide level1"><h1>使用神经网络求解量子多体问题</h1></section><section class="slide level6">
+
+<p>Carleo, Giuseppe, and Matthias Troyer. &quot;Solving the quantum many-body problem with artificial neural networks.&quot; Science 355.6325 (2017): 602-606.</p>
+</section><section class="slide level6">
+
+<p>如我们之前所说，神经网络在这里被用作一种量子态的表示形式</p>
+<figure>
+<img src="../img/nqs.png" />
+</figure>
+</section><section class="slide level6">
+
+<p>文章中所展示的效果是非常好的</p>
+<figure>
+<img src="../img/nqs-res.png" />
+</figure>
+</section><section class="slide level6">
+
+<p>接下来有人分析了其中的纠缠结构和表示能力</p>
+</section><section class="slide level6">
+
+<p>Deng D L, Li X, Sarma S D. Quantum entanglement in neural network states[J]. Physical Review X, 2017, 7(2): 021021.</p>
+</section><section class="slide level6">
+
+<p>Gao X, Duan L M. Efficient representation of quantum many-body states with deep neural networks[J]. arXiv preprint arXiv:1701.05039, 2017.</p>
+</section><section class="slide level6">
+
+<p>我们发现看到这种结构实际上是可以表达不满足面积定律的量子态的。这是神经网络的一个很大的优势。</p>
+</section><section class="slide level6">
+
+<p>但是这其实还没有结束，原文使用的玻尔兹曼机还仅仅表达很少的一部分量子态，还有一些在张量网络中可以被表达的量子态不能在玻尔兹曼机中表达。</p>
+</section><section class="slide level6">
+
+<p>此外即便这篇文章称可以使用这种方法尝试更难的费米子问题，但是也还没有工作真正解决了这些问题。</p>
+</section><section class="slide level6">
+
+<p>之后由于有了一种新的表示一类量子态的方式，原文的作者又用它来从实验观测结果重构一个量子态，也就是进行统计分析</p>
+</section><section class="slide level6">
+
+<p>Neural-network quantum state tomography for many-body systems, Giacomo Torlai, Guglielmo Mazzola, Juan Carrasquilla, Matthias Troyer, Roger Melko, and Giuseppe Carleo</p>
+</section><section class="slide level6">
+
+<p>接下来有人将其推广到一种张量网络上去</p>
+</section><section class="slide level6">
+
+<p>Glasser, Ivan, et al. &quot;Neural Networks Quantum States, String-Bond States and chiral topological states.&quot; arXiv preprint arXiv:1710.04045 (2017).</p>
+</section><section class="slide level6">
+
+<p>实际上这篇文章又回到了张量网络的框架下来，将原先的玻尔兹曼机等价回来了。</p>
+</section><section class="slide level6">
+
+<p>到这里疑问还非常的多，神经网络是否是一种很好的量子态的表示方法呢？我们还很难知道，但是目前看来最有效的似乎还是张量网络。</p>
+</section><section class="slide level6">
+
+<p>我猜你们会问：那张量网络能机器学习吗？</p>
+</section><section class="slide level6">
+
+<p>当然可以</p>
+</section></section>
+<section><section id="用张量网络完成计算机视觉任务" class="titleslide slide level1"><h1>用张量网络完成计算机视觉任务</h1></section><section class="slide level6">
+
+<p>Supervised Learning With Quantum-Inspired Tensor Networks，　E. Miles Stoudenmire, and David J. Schwab</p>
+</section><section class="slide level6">
+
+<p>这篇文章用矩阵乘积态去识别MNIST手写笔记，当然准确率没有CNN高。但是也许这是一种新方法。</p>
+</section><section class="slide level6">
+
+<p>Unsupervised Generative Modeling Using Matrix Product States, Zhao-Yu Han, Jun Wang, Heng Fan, Lei Wang, and Pan Zhang</p>
+</section><section class="slide level6">
+
+<p>这篇文章则利用矩阵乘积态进行生成学习</p>
+</section><section class="slide level6">
+
+<figure>
+<img src="../img/mps-generate.png" />
+</figure>
+</section><section class="slide level6">
+
+<p>所以张量网络，神经网络，量子物理之间有什么关系呢？这还有待我们未来继续探索！</p>
+</section></section>
+    </div>
+  </div>
+
+
+  <script src="../lib/js/head.min.js"></script>
+  <script src="../js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
